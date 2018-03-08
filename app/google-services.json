@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1011548299198",
+    "firebase_url": "https://true-subject-138323.firebaseio.com",
+    "project_id": "true-subject-138323",
+    "storage_bucket": "true-subject-138323.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1011548299198:android:4bcbc5611e8e0e33",
+        "android_client_info": {
+          "package_name": "com.dubalais.android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1011548299198-228dm0b77ipvml3kucem3443n2kke6gd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKglqQUYTI36ggrGt_ILmo9E1QGpOl6BA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

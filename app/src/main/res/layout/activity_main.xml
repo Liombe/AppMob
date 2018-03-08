@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:fitsSystemWindows="true"
+    tools:context="com.dubalais.android.MainActivity">
+
+
+<!--<android.support.design.widget.AppBarLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:theme="@style/AppTheme"
+    app:elevation="0dp">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimaryDark"
+        app:layout_scrollFlags="scroll|enterAlways"
+        app:popupTheme="@style/AppTheme" />
+
+</android.support.design.widget.AppBarLayout>-->
+
+    <FrameLayout
+        android:id="@+id/contain_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <!-- LES FRAGMENTS SERONT ICI -->
+    </FrameLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/barre_menu"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <ImageButton
+            android:id="@+id/menu_open"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/descr_menu_btn_open"
+            android:src="@drawable/menu_open"
+            android:onClick="ouvrirMenu"
+            app:layout_constraintStart_toEndOf="@id/guideline_left"
+            android:background="@android:color/transparent"/>
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.06" />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/menu_contain"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        >
+
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/menu_fond"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/fondMenu">
+        </android.support.constraint.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/titre_menu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/titreMenu"
+            android:textSize="35sp"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:fontFamily="@font/petitformalscript"
+            app:layout_constraintTop_toBottomOf="@id/guideline_menu"/>
+
+        <LinearLayout
+            android:id="@+id/menu_contain_1"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginStart="14dp"
+            android:layout_marginEnd="14dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/titre_menu"
+            android:layout_marginTop="85dp">
+
+            <ImageView
+                android:id="@+id/menu_home"
+                android:layout_width="wrap_content"
+                android:layout_height="85dp"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/descr_menu_btn_param"
+                android:src="@drawable/icone_menu_home"
+                android:onClick="fragHome"
+                app:layout_constraintTop_toBottomOf="@id/titre_menu" />
+
+            <ImageView
+                android:id="@+id/menu_annonce"
+                android:layout_width="wrap_content"
+                android:layout_height="85dp"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/descr_menu_btn_annonce"
+                android:src="@drawable/icone_menu_annonce"
+                android:onClick="fragNewAdvert"/>
+
+            <ImageView
+                android:id="@+id/menu_modif"
+                android:layout_width="wrap_content"
+                android:layout_height="85dp"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:src="@drawable/icone_menu_edit"
+                android:onClick="fragViewAdvert"
+                android:contentDescription="@string/descr_menu_btn_modif"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/menu_contain_2"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginStart="14dp"
+            android:layout_marginEnd="14dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/menu_contain_1"
+            android:layout_marginTop="35dp">
+
+            <ImageView
+                android:id="@+id/menu_param"
+                android:layout_width="wrap_content"
+                android:layout_height="85dp"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/descr_menu_btn_param"
+                android:src="@drawable/icone_menu_param"
+                app:layout_constraintTop_toBottomOf="@id/titre_menu" />
+            <ImageView
+                android:id="@+id/menu_recherche"
+                android:layout_width="wrap_content"
+                android:layout_height="85dp"
+                android:layout_weight="1"
+                android:onClick="fragRecherche"
+                android:background="@android:color/transparent"
+                android:src="@drawable/icone_menu_rech"
+                android:contentDescription="@string/descr_menu_btn_rech"/>
+
+            <ImageView
+                android:id="@+id/menu_commenter"
+                android:layout_width="wrap_content"
+                android:layout_height="85dp"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:src="@drawable/icone_menu_com"
+                android:contentDescription="@string/descr_menu_btn_com"/>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/deconnexion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_deco"
+            android:fontFamily="@font/robotolight"
+            android:textSize="23sp"
+            android:textColor="@color/white"
+            android:textAllCaps="true"
+            android:layout_marginTop="55dp"
+            android:layout_marginStart="105dp"
+            android:layout_marginEnd="105dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:background="@drawable/cornerbtn"
+            android:onClick="deconnexion"
+            app:layout_constraintTop_toBottomOf="@id/menu_contain_2"/>
+
+        <ImageButton
+            android:id="@+id/menu_close"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:src="@drawable/menu_close"
+            android:background="@android:color/transparent"
+            app:layout_constraintTop_toTopOf="@id/guideline_bottom"
+            android:contentDescription="@string/descr_menu_btn_close"
+            android:onClick="fermerMenu"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.05" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline_bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.9" />
+        </android.support.constraint.ConstraintLayout>
+
+</android.support.constraint.ConstraintLayout>

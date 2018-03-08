@@ -1,0 +1,22 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.dubalais.android.annoncefragment">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <com.wenchao.cardstack.CardStack
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="630dp"
+            android:minHeight="200dp"
+            android:padding = "20dp"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            >
+        </com.wenchao.cardstack.CardStack>
+    </LinearLayout>
+
+</FrameLayout>

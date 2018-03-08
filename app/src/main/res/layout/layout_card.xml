@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#C0C0C0" >
+
+    <TextView
+        android:id="@+id/tv_card_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:textSize="24sp"
+        />
+
+    <TextView
+        android:id="@+id/textdesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_card_number"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="46dp"
+         />
+
+    <TextView
+        android:id="@+id/textprix"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textdesc"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="75dp"
+        android:text="Prix:" />
+
+
+</RelativeLayout>

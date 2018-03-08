@@ -1,0 +1,236 @@
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.dubalais.android.PostAdFragment"
+    tools:layout_editor_absoluteY="25dp">
+
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/petitformalscript"
+        android:text="@string/title_post_ad"
+        android:textAlignment="center"
+        android:textColor="@color/noir"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guidelinedebut" />
+
+    <ViewSwitcher
+        android:id="@+id/viewSwitcher"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        app:layout_constraintBottom_toBottomOf="@+id/guidelinefin"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:orientation="vertical"
+            android:id="@+id/vsLinearLayout">
+
+            <LinearLayout
+                android:id="@+id/titleLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:orientation="vertical">
+
+
+                <EditText
+                    android:id="@+id/txtTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="10"
+                    android:background="@android:color/white"
+                    android:fontFamily="@font/robotolight"
+                    android:hint="Titre"
+                    android:inputType="text"
+                    android:paddingLeft="15dp"
+                    android:textColor="@android:color/black"
+                    android:textColorHint="@color/grisClair" />
+
+                <TextView
+                    android:id="@+id/labelTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="10"
+                    android:text="Faire les poussières appartement 30m²..." />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/priceLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@+id/titleLayout">
+
+                <EditText
+                    android:id="@+id/txtPrice"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="10"
+                    android:background="@android:color/white"
+                    android:fontFamily="@font/robotolight"
+                    android:hint="Prix"
+                    android:inputType="text"
+                    android:paddingLeft="15dp"
+                    android:textColor="@android:color/black"
+                    android:textColorHint="@color/grisClair" />
+
+                <TextView
+                    android:id="@+id/labelPrice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="10"
+                    android:text="Rémunération proposée" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/adressLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@+id/priceLayout">
+
+                <EditText
+                    android:id="@+id/txtVoie"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="10"
+                    android:background="@android:color/white"
+                    android:fontFamily="@font/robotolight"
+                    android:hint="Voie ex : 28 avenue de la République"
+                    android:inputType="text"
+                    android:paddingLeft="15dp"
+                    android:textColor="@android:color/black"
+                    android:textColorHint="@color/grisClair" />
+
+                <EditText
+                    android:id="@+id/txtZipCode"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="10"
+                    android:background="@android:color/white"
+                    android:fontFamily="@font/robotolight"
+                    android:hint="Code Postal"
+                    android:inputType="text"
+                    android:paddingLeft="15dp"
+                    android:textColor="@android:color/black"
+                    android:textColorHint="@color/grisClair" />
+
+                <EditText
+                    android:id="@+id/txtCity"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="10"
+                    android:background="@android:color/white"
+                    android:fontFamily="@font/robotolight"
+                    android:hint="Ville"
+                    android:inputType="text"
+                    android:paddingLeft="15dp"
+                    android:textColor="@android:color/black"
+                    android:textColorHint="@color/grisClair" />
+
+                <TextView
+                    android:id="@+id/labelAdress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="10"
+                    android:text="A quelle adresse ?" />
+
+            </LinearLayout>
+            <Button
+                android:id="@+id/switch1_button"
+                style="?android:textAppearanceSmall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="10"
+                android:background="@color/white"
+                android:fontFamily="@font/robotolight"
+                android:text="Suivant"
+                android:textColor="@android:color/black" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/choresLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="35dp"
+                android:layout_marginLeft="35dp"
+                android:layout_marginRight="35dp"
+                android:layout_marginStart="35dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight="10"
+                android:background="@android:color/transparent"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@+id/adressLayout">
+
+
+                <TextView
+                    android:id="@+id/choresTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Les tâches ménagères" />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/switch2_button"
+                style="?android:textAppearanceSmall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="10"
+                android:background="@color/white"
+                android:fontFamily="@font/robotolight"
+                android:text="Précédent"
+                android:textColor="@android:color/black" />
+
+            <Button
+                android:id="@+id/submit_button"
+                style="?android:textAppearanceSmall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="10"
+                android:background="@color/white"
+                android:fontFamily="@font/robotolight"
+                android:text="Poster"
+                android:textColor="@android:color/black"
+                app:layout_constraintBottom_toBottomOf="@id/guidelinefin" />
+
+        </LinearLayout>
+
+    </ViewSwitcher>
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelinedebut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.02" />
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelinefin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.90" />
+
+
+</android.support.constraint.ConstraintLayout>
