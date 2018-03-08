@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.dubalais.android.models.Advert;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -45,6 +46,11 @@ public class annoncefragment extends Fragment implements CardStack.CardEventList
     private String mParam2;
     FirebaseDatabase database;
     DatabaseReference myRef;
+    Advert ad;
+
+    public void setAd(Advert ad){
+        this.ad = ad;
+    }
 
     private OnFragmentInteractionListener mListener;
 
@@ -98,7 +104,7 @@ public class annoncefragment extends Fragment implements CardStack.CardEventList
         cardstack.setContentResource(R.layout.layout_card);
         cardstack.setStackMargin(18);
         cardstack.setListener(this);
-
+        Toast.makeText(v.getContext(), ad.toMap().toString(), Toast.LENGTH_LONG);
         myRef.addValueEventListener(new ValueEventListener(){
             @Override
             public void onDataChange(DataSnapshot dataSnapshot){

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    app:layout_constraintEnd_toEndOf="parent"
     android:padding="10dp"
     android:id="@+id/Relative">
 
@@ -33,6 +34,6 @@
         android:text="Date"
         android:textColor="@android:color/black"
         app:layout_constraintTop_toTopOf="@+id/txtTitle"
-        app:layout_constraintEnd_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

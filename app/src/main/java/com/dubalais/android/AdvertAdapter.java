@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.dubalais.android.models.Advert;
 import com.dubalais.android.viewholder.AdvertViewHolder;
@@ -21,8 +22,8 @@ import java.util.List;
 public class AdvertAdapter extends ArrayAdapter<Advert> {
     //tweets est la liste des models à afficher
 
-    public AdvertAdapter(Context context, List<Advert> tweets) {
-        super(context, 0, tweets);
+    public AdvertAdapter(Context context, List<Advert> ads) {
+        super(context, 0, ads);
     }
 
     @Override

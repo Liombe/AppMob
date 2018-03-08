@@ -4,13 +4,24 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.dubalais.android.models.Advert;
+import com.dubalais.android.models.User;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +40,10 @@ public class ViewAdFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    FirebaseDatabase database;
+    DatabaseReference myRef;
+    private FragmentTransaction fragmentTransaction;
+    private FragmentManager fragmentManager;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -65,29 +80,60 @@ public class ViewAdFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        database=FirebaseDatabase.getInstance();
+        myRef=database.getReference();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_viewad, container, false);
+        final View view = inflater.inflate(R.layout.fragment_viewad, container, false);
         final ListView lv = (ListView) view.findViewById(R.id.listView);
 
-        List<Advert> adverts = genererAdverts();
+        final List<Advert> ads = new ArrayList<Advert>();
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        myRef.child("users-adverts").child(uid).addValueEventListener(new ValueEventListener() {
 
-        AdvertAdapter adapter = new AdvertAdapter(view.getContext(), adverts);
-        lv.setAdapter(adapter);
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for(DataSnapshot child : dataSnapshot.getChildren()){
+                    String id = child.getKey();
+                    Advert ad = child.getValue(Advert.class);
+                    ad.setId(id);
+                    ads.add(ad);
+                }
+                AdvertAdapter adapter = new AdvertAdapter(view.getContext(), ads);
+                lv.setAdapter(adapter);
+                lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        fragmentManager = getFragmentManager();
+                        fragmentTransaction = fragmentManager.beginTransaction();
+
+                        annoncefragment fragment = new annoncefragment();
+                        fragment.setAd(ads.get(i));
+                        fragmentTransaction.replace(R.id.contain_fragment, fragment);
+                        fragmentTransaction.addToBackStack(null);
+                        fragmentTransaction.commit();
+                    }
+                });
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
         return view;
     }
 
     private List<Advert> genererAdverts() {
-        List<Advert> ads = new ArrayList<Advert>();
-        ads.add(new Advert(null, null, "Passer l'aspirateur", 45.0, null, null ));
-        ads.add(new Advert(null, null, "Faire les poussières", 35.0, null, null ));
-        ads.add(new Advert(null, null, "Faire les vitres", 25.0, null, null ));
 
-        return ads;
+
+        return null;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

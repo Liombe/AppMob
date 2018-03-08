@@ -60,4 +60,8 @@ public class Advert {
     public String getTitle() {
         return title;
     }
+
+    public void setId(String id) {
+        this.uid = id;
+    }
 }
