@@ -61,6 +61,49 @@ public class Advert {
         return title;
     }
 
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+
+
+    public String getstringprice() {
+        return Double.toString(price);
+    }
+
+    public String getadvertiser() {
+        return advertiser;
+    }
+
+    public String getville(){
+
+        return address.getCity();
+    }
+
+    public String getvoie(){
+
+        return address.getVoie();
+    }
+    public String getzip(){
+
+        return Long.toString(address.getzipcode());
+    }
+
+    public  String getchore(){
+        String s="";
+        for (int i=0;i<this.chores.size();i++){
+            s+=this.chores.get(i).title+" ";
+        }
+        return s;
+    }
+
+    public String getaddresse(){
+        return address.getVoie()+address.getCity()+getzip();
+    }
+
     public void setId(String id) {
         this.uid = id;
     }

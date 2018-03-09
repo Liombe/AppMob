@@ -1,46 +1,72 @@
 package com.dubalais.android;
 
+import android.util.Log;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
 /**
  * Created by nikola on 01/03/18.
  */
 
 public class annonce {
-    private String description;
-    //private String prix;
-    private String titre;
+    private String advertiser;
+    private String title;
+    private Long price;
+    private String uid;
+    private HashMap<String,Object> chores;
 
-    public annonce(String titre,String desc/*,String prix*/){
-        this.titre=titre;
-        this.description=desc;
-        //this.prix=prix;
+    public annonce(String advertiser, Long price,String titre, String uid,HashMap<String,Object>e){
+        this.title=titre;
+        this.advertiser=advertiser;
+        //this.price=Long.toString(price);
+        this.uid=uid;
+        this.chores=e;
+
+
     }
     public annonce(){
 
     }
 
-    public String getDescription() {
-
-        return description;
+    public String getadvertiser() {
+        return advertiser;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setadvertiser(String description)
+    {
+        this.advertiser = description;
     }
 
-   /* public String getPrix() {
-        return prix;
+    public Long getPrice() {
+
+        return price;
     }
 
-    public void setPrix(String prix) {
-
-        this.prix = prix;
-    }
-    */
-    public String getTitre() {
-        return titre;
+    public String getstringprice(){
+        return Long.toString(price);
     }
 
-    public void setTitre(String titre) {
-        this.titre = titre;
+    public void setPrice(Long price) {
+
+        this.price = price;
+    }
+
+    public String getTitle() {
+
+        return title;
+    }
+
+    public void setTitle(String titre) {
+
+        this.title = titre;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 }

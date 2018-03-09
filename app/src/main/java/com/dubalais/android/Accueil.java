@@ -18,9 +18,7 @@ public class Accueil extends AppCompatActivity implements annoncefragment.OnFrag
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_accueil);
 
-        mDatabase = FirebaseDatabase.getInstance().getReference();
-        annonce a=new annonce("Salon à nettoyer","Mon salon est sale venez svp");
-        mDatabase.child("annonce").child("an2").setValue(a);
+
 
         Fragment fragment = null;
         Class fragmentClass = null;

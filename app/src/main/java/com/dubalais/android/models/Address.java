@@ -12,9 +12,9 @@ import java.util.Map;
 
 @IgnoreExtraProperties
 public class Address {
-    public String voie;
-    public long zipcode;
-    public String city;
+    private String voie;
+    private long zipcode;
+    private String city;
 
     public Address(){
 
@@ -35,4 +35,19 @@ public class Address {
 
         return result;
     }
+
+    public String getCity(){
+        return city;
+    }
+
+    public String getVoie() {
+        return voie;
+    }
+
+    public Long getzipcode(){
+        return zipcode;
+
+    }
 }
+
+

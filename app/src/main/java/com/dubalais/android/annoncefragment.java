@@ -4,6 +4,8 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,6 +38,9 @@ public class annoncefragment extends Fragment implements CardStack.CardEventList
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    Advert ad;
+
+
 
     ArrayList<String> card_list;
     CardStack cardstack;
@@ -46,13 +51,11 @@ public class annoncefragment extends Fragment implements CardStack.CardEventList
     private String mParam2;
     FirebaseDatabase database;
     DatabaseReference myRef;
-    Advert ad;
-
-    public void setAd(Advert ad){
-        this.ad = ad;
-    }
-
+    private int swipecount=0;
     private OnFragmentInteractionListener mListener;
+    private ArrayList<Advert> Datalistannonce= new ArrayList<Advert>();
+
+
 
     public annoncefragment() {
         // Required empty public constructor
@@ -92,45 +95,41 @@ public class annoncefragment extends Fragment implements CardStack.CardEventList
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_annoncefragment, container, false);
+
         card_list = new ArrayList<>();
 
-        card_list.add("card 1");
-        card_list.add("card 2");
-        card_list.add("card 3");
-        card_list.add("card 4");
-        card_list.add("card 5");
 
         cardstack = (CardStack) v.findViewById(R.id.container);
         cardstack.setContentResource(R.layout.layout_card);
         cardstack.setStackMargin(18);
         cardstack.setListener(this);
-        Toast.makeText(v.getContext(), ad.toMap().toString(), Toast.LENGTH_LONG);
-        myRef.addValueEventListener(new ValueEventListener(){
+
+        myRef.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot){
-                ArrayList<Advert> Datalistannonce = new ArrayList<Advert>();
+            public void onDataChange(DataSnapshot dataSnapshot) {
 
           /* This method is called once with the initial value and again whenever data at this location is updated.*/
-                long value=dataSnapshot.getChildrenCount();
-                Log.d("comptfils","no of children: "+value);
+                long value = dataSnapshot.getChildrenCount();
+                Log.d("comptfils", "no of children: " + value);
 
-                for (DataSnapshot child: dataSnapshot.getChildren()) {
+                for (DataSnapshot child : dataSnapshot.getChildren()) {
                     Datalistannonce.add(child.getValue(Advert.class));
                 }
 
                 for(int i=0;i<Datalistannonce.size();i++){
-                    Toast.makeText(getActivity().getApplicationContext(),"TaskTitle = "+Datalistannonce.get(i).getTitle(),Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity().getApplicationContext(),"TaskTitle = "+Datalistannonce.get(i).getville(),Toast.LENGTH_LONG).show();
                 }
-                swipe_card_adapter = new SwipeCardAdapter(getActivity().getApplicationContext(),0,Datalistannonce);
+                swipe_card_adapter = new SwipeCardAdapter(getActivity().getApplicationContext(), 0, Datalistannonce);
                 cardstack.setAdapter(swipe_card_adapter);
             }
 
             @Override
-            public void onCancelled(DatabaseError error){
+            public void onCancelled(DatabaseError error) {
                 // Failed to read value
-                Log.w("erreurdb","Failed to read value.",error.toException());
+                Log.w("erreurdb", "Failed to read value.", error.toException());
             }
         });
+
 
         return v;
     }
@@ -178,27 +177,40 @@ public class annoncefragment extends Fragment implements CardStack.CardEventList
         int swiped_card_postion = mIndex -1;
 
         //getting the string attached with the card
-        String swiped_card_text = card_list.get(swiped_card_postion).toString();
+        // String swiped_card_text = card_list.get(swiped_card_postion).toString();
 
 
         if (direction == 1) {
 
-            Toast.makeText(getActivity().getApplicationContext(),swiped_card_text+" Swipped to right",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity().getApplicationContext(),/*swiped_card_text+*/" Swipped to right",Toast.LENGTH_SHORT).show();
 
         } else if (direction == 0) {
 
-            Toast.makeText(getActivity().getApplicationContext(),swiped_card_text+" Swipped to Left",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity().getApplicationContext()," Swipped to Left",Toast.LENGTH_SHORT).show();
+
+
 
         } else {
 
-            Toast.makeText(getActivity().getApplicationContext(),swiped_card_text+" Swipped to Bottom",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity().getApplicationContext()," Swipped to Bottom",Toast.LENGTH_SHORT).show();
+
+            Bundle b = new Bundle();
+            b.putString("arrivee",Datalistannonce.get(swipecount).getaddresse());
+            FragmentManager fragmentManager = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            lieuFragment fragment = new lieuFragment();
+            fragment.setArguments(b);
+            fragmentTransaction.replace(R.id.contain_fragment, fragment);
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
 
         }
-
+        swipecount++;
     }
 
     @Override
     public void topCardTapped() {
+        Toast.makeText(getActivity().getApplicationContext(),"TaskTitle = "+Datalistannonce.get(0).getville(),Toast.LENGTH_LONG).show();
         Toast.makeText(getActivity().getApplicationContext(),"Clicked top card",Toast.LENGTH_SHORT).show();
 
     }
@@ -216,5 +228,9 @@ public class annoncefragment extends Fragment implements CardStack.CardEventList
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    public void setAd(Advert ad){
+        this.ad = ad;
     }
 }

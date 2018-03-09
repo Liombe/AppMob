@@ -15,32 +15,41 @@ import java.util.ArrayList;
  * Created by nikola on 01/03/18.
  */
 
-    public class SwipeCardAdapter extends ArrayAdapter<annonce> {
+public class SwipeCardAdapter extends ArrayAdapter<Advert> {
 
-        ArrayList<Advert> card_list;
+    ArrayList<Advert> card_list;
 
-        public SwipeCardAdapter(Context context, int resource, ArrayList<Advert> card_list) {
-            super(context, resource);
-            this.card_list = card_list;
-        }
-
-        @Override
-        public View getView(int position, final View contentView, ViewGroup parent){
-
-            TextView tv_card_number = (TextView)(contentView.findViewById(R.id.tv_card_number));
-            tv_card_number.setText(card_list.get(position).getTitle());
-            TextView t_prix = (TextView)(contentView.findViewById(R.id.textprix));
-            //t_prix.setText(card_list.get(position).getPrice());
-            TextView t_descri = (TextView)(contentView.findViewById(R.id.textdesc));
-            t_descri.setText(card_list.get(position).getDate());
-            return contentView;
-        }
-
-
-        @Override
-        public int getCount() {
-            return this.card_list.size();
-        }
-
+    public SwipeCardAdapter(Context context, int resource, ArrayList<Advert> card_list) {
+        super(context, resource);
+        this.card_list = card_list;
     }
+
+    @Override
+    public View getView(int position, final View contentView, ViewGroup parent){
+
+        TextView t_titre=(TextView)(contentView.findViewById(R.id.texttitre));
+        t_titre.setText(card_list.get(position).getTitle());
+
+        TextView t_prix = (TextView)(contentView.findViewById(R.id.textprix));
+        t_prix.setText(card_list.get(position).getstringprice()+"€");
+
+        TextView t_annonceur = (TextView)(contentView.findViewById(R.id.textanonceur ));
+        t_annonceur .setText(card_list.get(position).getadvertiser());
+
+        TextView t_ville=(TextView)(contentView.findViewById(R.id.textville));
+        t_ville.setText(card_list.get(position).getville());
+
+        TextView t_desc=(TextView)(contentView.findViewById(R.id.textdesc));
+        t_desc.setText(card_list.get(position).getchore());
+
+        return contentView;
+    }
+
+
+    @Override
+    public int getCount() {
+        return this.card_list.size();
+    }
+
+}
 

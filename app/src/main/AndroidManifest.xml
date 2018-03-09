@@ -3,6 +3,8 @@
     package="com.dubalais.android">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -12,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity" />
-        <activity android:name=".SignupActivity"></activity>
+        <activity android:name=".SignupActivity" />
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,7 +23,15 @@
             </intent-filter>
         </activity>
         <activity android:name=".ResetPasswordActivity" />
-        <activity android:name=".Accueil"></activity>
+        <activity android:name=".Accueil" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value=" AIzaSyCqW-YsD1cR2P1HE6h_KJ183FR9LYKZkq8" />
+
+        <activity
+            android:name=".MapsActivity"
+            android:label="@string/title_activity_maps"></activity>
     </application>
 
 </manifest>

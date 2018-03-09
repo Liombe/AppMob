@@ -6,31 +6,48 @@
     android:background="#C0C0C0" >
 
     <TextView
-        android:id="@+id/tv_card_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/texttitre"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:textSize="24sp"
         />
 
     <TextView
-        android:id="@+id/textdesc"
+        android:id="@+id/textanonceur"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_card_number"
+        android:layout_below="@+id/texttitre"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="46dp"
-         />
+        />
 
     <TextView
         android:id="@+id/textprix"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textdesc"
+        android:layout_below="@+id/textanonceur"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="75dp"
         android:text="Prix:" />
+
+    <TextView
+        android:id="@+id/textville"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textprix"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="47dp"
+        android:text="Ville" />
+
+    <TextView
+        android:id="@+id/textdesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textville"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="36dp"
+        android:text="desc" />
 
 
 </RelativeLayout>
