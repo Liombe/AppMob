@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.dubalais.android.models.Address;
 import com.dubalais.android.models.Advert;
 import com.dubalais.android.models.User;
 import com.google.firebase.auth.FirebaseAuth;
@@ -103,6 +105,7 @@ public class ViewAdFragment extends Fragment {
                     ad.setId(id);
                     ads.add(ad);
                 }
+
                 AdvertAdapter adapter = new AdvertAdapter(view.getContext(), ads);
                 lv.setAdapter(adapter);
                 lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {

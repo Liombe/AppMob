@@ -8,47 +8,46 @@
     tools:context="com.dubalais.android.PostAdFragment"
     tools:layout_editor_absoluteY="25dp">
 
-
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/petitformalscript"
+        android:text="@string/title_post_ad"
+        android:textAlignment="center"
+        android:textColor="@color/noir"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guidelinedebut" />
 
     <ViewSwitcher
         android:id="@+id/viewSwitcher"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:measureAllChildren="false"
         android:layout_marginEnd="35dp"
         android:layout_marginLeft="35dp"
         android:layout_marginRight="35dp"
         android:layout_marginStart="35dp"
-        android:layout_marginTop="10dp"
-        app:layout_constraintBottom_toBottomOf="parent">
-        <!--app:layout_constraintBottom_toBottomOf="parent">-->
-        <!---->
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="45dp">
+
 
 
         <LinearLayout
+            android:id="@+id/vsLinearLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@android:color/transparent"
-            android:orientation="vertical"
-            android:id="@+id/vsLinearLayout">
-            <TextView
-                android:id="@+id/title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/petitformalscript"
-                android:text="@string/title_post_ad"
-                android:textAlignment="center"
-                android:textColor="@color/noir"
-                android:textSize="30sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/guidelinedebut" />
+            android:orientation="vertical">
 
             <LinearLayout
                 android:id="@+id/titleLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="20dp"
                 android:background="@android:color/transparent"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingBottom="20dp">
 
 
                 <EditText
@@ -69,8 +68,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="10"
-                    android:textColor="@color/grisClair"
-                    android:text="Faire les poussières appartement 30m²..." />
+                    android:text="Faire les poussières appartement 30m²..."
+                    android:textColor="@color/grisClair" />
 
             </LinearLayout>
 
@@ -101,65 +100,65 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="10"
-                    android:textColor="@color/grisClair"
-                    android:text="Rémunération proposée" />
+                    android:text="Rémunération proposée"
+                    android:textColor="@color/grisClair" />
 
             </LinearLayout>
 
             <!--<LinearLayout-->
-                <!--android:id="@+id/adressLayout"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:background="@android:color/transparent"-->
-                <!--android:orientation="vertical"-->
-                <!--android:paddingBottom="20dp"-->
-                <!--app:layout_constraintTop_toBottomOf="@+id/priceLayout">-->
+            <!--android:id="@+id/adressLayout"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:background="@android:color/transparent"-->
+            <!--android:orientation="vertical"-->
+            <!--android:paddingBottom="20dp"-->
+            <!--app:layout_constraintTop_toBottomOf="@+id/priceLayout">-->
 
-                <!--<EditText-->
-                    <!--android:id="@+id/txtVoie"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="match_parent"-->
-                    <!--android:layout_weight="10"-->
-                    <!--android:background="@android:color/white"-->
-                    <!--android:fontFamily="@font/robotolight"-->
-                    <!--android:hint="Voie ex : 28 avenue de la République"-->
-                    <!--android:inputType="text"-->
-                    <!--android:paddingLeft="15dp"-->
-                    <!--android:textColor="@android:color/black"-->
-                    <!--android:textColorHint="@color/grisClair" />-->
+            <!--<EditText-->
+            <!--android:id="@+id/txtVoie"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="10"-->
+            <!--android:background="@android:color/white"-->
+            <!--android:fontFamily="@font/robotolight"-->
+            <!--android:hint="Voie ex : 28 avenue de la République"-->
+            <!--android:inputType="text"-->
+            <!--android:paddingLeft="15dp"-->
+            <!--android:textColor="@android:color/black"-->
+            <!--android:textColorHint="@color/grisClair" />-->
 
-                <!--<EditText-->
-                    <!--android:id="@+id/txtZipCode"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="40dp"-->
-                    <!--android:layout_weight="10"-->
-                    <!--android:background="@android:color/white"-->
-                    <!--android:fontFamily="@font/robotolight"-->
-                    <!--android:hint="Code Postal"-->
-                    <!--android:inputType="text"-->
-                    <!--android:paddingLeft="15dp"-->
-                    <!--android:textColor="@android:color/black"-->
-                    <!--android:textColorHint="@color/grisClair" />-->
+            <!--<EditText-->
+            <!--android:id="@+id/txtZipCode"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="40dp"-->
+            <!--android:layout_weight="10"-->
+            <!--android:background="@android:color/white"-->
+            <!--android:fontFamily="@font/robotolight"-->
+            <!--android:hint="Code Postal"-->
+            <!--android:inputType="text"-->
+            <!--android:paddingLeft="15dp"-->
+            <!--android:textColor="@android:color/black"-->
+            <!--android:textColorHint="@color/grisClair" />-->
 
-                <!--<EditText-->
-                    <!--android:id="@+id/txtCity"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="40dp"-->
-                    <!--android:layout_weight="10"-->
-                    <!--android:background="@android:color/white"-->
-                    <!--android:fontFamily="@font/robotolight"-->
-                    <!--android:hint="Ville"-->
-                    <!--android:inputType="text"-->
-                    <!--android:paddingLeft="15dp"-->
-                    <!--android:textColor="@android:color/black"-->
-                    <!--android:textColorHint="@color/grisClair" />-->
+            <!--<EditText-->
+            <!--android:id="@+id/txtCity"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="40dp"-->
+            <!--android:layout_weight="10"-->
+            <!--android:background="@android:color/white"-->
+            <!--android:fontFamily="@font/robotolight"-->
+            <!--android:hint="Ville"-->
+            <!--android:inputType="text"-->
+            <!--android:paddingLeft="15dp"-->
+            <!--android:textColor="@android:color/black"-->
+            <!--android:textColorHint="@color/grisClair" />-->
 
-                <!--<TextView-->
-                    <!--android:id="@+id/labelAdress"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_weight="10"-->
-                    <!--android:text="A quelle adresse ?" />-->
+            <!--<TextView-->
+            <!--android:id="@+id/labelAdress"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="10"-->
+            <!--android:text="A quelle adresse ?" />-->
 
             <!--</LinearLayout>-->
 
@@ -170,12 +169,11 @@
                 android:layout_height="40dp"
                 android:layout_weight="10"
                 android:background="@color/white"
+                android:backgroundTint="@color/bg_login"
                 android:fontFamily="@font/robotolight"
                 android:text="Suivant"
-                android:textStyle="bold"
                 android:textColor="@android:color/white"
-                android:backgroundTint="@color/bg_login"
-                app:layout_constraintBottom_toTopOf="@+id/guidelinefin" />
+                android:textStyle="bold" />
 
         </LinearLayout>
 
@@ -203,10 +201,10 @@
                     android:id="@+id/choresTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Les tâches ménagères"
                     android:fontFamily="@font/robotolight"
+                    android:text="Les tâches ménagères"
                     android:textColor="@color/bg_login"
-                    android:textSize="18sp"/>
+                    android:textSize="18sp" />
 
             </LinearLayout>
 
@@ -231,12 +229,13 @@
                 android:fontFamily="@font/robotolight"
                 android:text="Poster"
                 android:textColor="@android:color/black"
-                app:layout_constraintTop_toBottomOf="@id/guidelinefin"
-                app:layout_constraintBottom_toBottomOf="@id/guidelinefin" />
+                app:layout_constraintBottom_toBottomOf="@id/guidelinefin"
+                app:layout_constraintTop_toBottomOf="@id/guidelinefin" />
 
         </LinearLayout>
 
     </ViewSwitcher>
+
 
     <android.support.constraint.Guideline
         android:id="@+id/guidelinedebut"

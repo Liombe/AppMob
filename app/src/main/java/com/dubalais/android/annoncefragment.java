@@ -84,7 +84,7 @@ public class annoncefragment extends Fragment implements CardStack.CardEventList
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
         database=FirebaseDatabase.getInstance();
-        myRef=database.getReference("annonce");
+        myRef=database.getReference("adverts");
     }
 
     @Override
@@ -108,18 +108,18 @@ public class annoncefragment extends Fragment implements CardStack.CardEventList
         myRef.addValueEventListener(new ValueEventListener(){
             @Override
             public void onDataChange(DataSnapshot dataSnapshot){
-                ArrayList<annonce> Datalistannonce = new ArrayList<annonce>();
+                ArrayList<Advert> Datalistannonce = new ArrayList<Advert>();
 
           /* This method is called once with the initial value and again whenever data at this location is updated.*/
                 long value=dataSnapshot.getChildrenCount();
                 Log.d("comptfils","no of children: "+value);
 
                 for (DataSnapshot child: dataSnapshot.getChildren()) {
-                    Datalistannonce.add(child.getValue(annonce.class));
+                    Datalistannonce.add(child.getValue(Advert.class));
                 }
 
                 for(int i=0;i<Datalistannonce.size();i++){
-                    Toast.makeText(getActivity().getApplicationContext(),"TaskTitle = "+Datalistannonce.get(i).getDescription(),Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity().getApplicationContext(),"TaskTitle = "+Datalistannonce.get(i).getTitle(),Toast.LENGTH_LONG).show();
                 }
                 swipe_card_adapter = new SwipeCardAdapter(getActivity().getApplicationContext(),0,Datalistannonce);
                 cardstack.setAdapter(swipe_card_adapter);

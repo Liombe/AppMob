@@ -258,7 +258,7 @@ public class PostAdFragment extends Fragment {
                                     "Error: could not fetch user.",
                                     Toast.LENGTH_SHORT).show();
                         } else {
-                            postNewAdvert(uid, title, price, user.username, chores, user.address);
+                            postNewAdvert(uid, title, price, user.username, chores, new Address("28 avenue de la République", 9200, "Nanterre"));
                         }
                         setEditingEnabled(true);
                         fragmentManager = getFragmentManager();

@@ -7,6 +7,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.dubalais.android.R;
+import com.dubalais.android.models.Advert;
 
 import java.util.ArrayList;
 
@@ -16,9 +17,9 @@ import java.util.ArrayList;
 
     public class SwipeCardAdapter extends ArrayAdapter<annonce> {
 
-        ArrayList<annonce> card_list;
+        ArrayList<Advert> card_list;
 
-        public SwipeCardAdapter(Context context, int resource, ArrayList<annonce> card_list) {
+        public SwipeCardAdapter(Context context, int resource, ArrayList<Advert> card_list) {
             super(context, resource);
             this.card_list = card_list;
         }
@@ -27,11 +28,11 @@ import java.util.ArrayList;
         public View getView(int position, final View contentView, ViewGroup parent){
 
             TextView tv_card_number = (TextView)(contentView.findViewById(R.id.tv_card_number));
-            tv_card_number.setText(card_list.get(position).getTitre());
+            tv_card_number.setText(card_list.get(position).getTitle());
             TextView t_prix = (TextView)(contentView.findViewById(R.id.textprix));
-            //t_prix.setText(card_list.get(position).getPrix());
+            //t_prix.setText(card_list.get(position).getPrice());
             TextView t_descri = (TextView)(contentView.findViewById(R.id.textdesc));
-            t_descri.setText(card_list.get(position).getDescription());
+            t_descri.setText(card_list.get(position).getDate());
             return contentView;
         }
 
