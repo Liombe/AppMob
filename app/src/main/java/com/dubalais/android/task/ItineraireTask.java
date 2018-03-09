@@ -1,4 +1,4 @@
-package com.dubalais.android; /**
+package com.dubalais.android.task; /**
  * Created by nikola on 08/03/18.
  */
 import java.io.InputStream;
@@ -26,7 +26,7 @@ import android.os.AsyncTask;
 import android.widget.Toast;
 
 /**
- * com.dubalais.android.ItineraireTask
+ * com.dubalais.android.task.ItineraireTask
  * @author Ludovic
  */
 public class ItineraireTask extends AsyncTask<Void, Integer, Boolean> {

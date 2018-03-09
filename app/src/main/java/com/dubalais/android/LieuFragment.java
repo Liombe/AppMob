@@ -1,10 +1,8 @@
 package com.dubalais.android;
 
 
-import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Location;
-import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Looper;
@@ -17,7 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.google.android.gms.common.api.GoogleApiClient;
+import com.dubalais.android.task.ItineraireTask;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -31,7 +29,6 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 
@@ -39,7 +36,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class lieuFragment extends Fragment implements OnMapReadyCallback {
+public class LieuFragment extends Fragment implements OnMapReadyCallback {
 
     private GoogleMap mMap;
 
@@ -51,7 +48,7 @@ public class lieuFragment extends Fragment implements OnMapReadyCallback {
     private FusedLocationProviderClient mFusedLocationClient;
     private LatLng latLng;
 
-    public lieuFragment() {
+    public LieuFragment() {
         // Required empty public constructor
     }
 

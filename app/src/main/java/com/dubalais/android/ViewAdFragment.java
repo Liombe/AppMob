@@ -6,18 +6,14 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.dubalais.android.models.Address;
+import com.dubalais.android.adapter.AdvertAdapter;
 import com.dubalais.android.models.Advert;
-import com.dubalais.android.models.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -114,7 +110,7 @@ public class ViewAdFragment extends Fragment {
                         fragmentManager = getFragmentManager();
                         fragmentTransaction = fragmentManager.beginTransaction();
 
-                        annoncefragment fragment = new annoncefragment();
+                        MatchingAdvertFragment fragment = new MatchingAdvertFragment();
                         fragment.setAd(ads.get(i));
                         fragmentTransaction.replace(R.id.contain_fragment, fragment);
                         fragmentTransaction.addToBackStack(null);

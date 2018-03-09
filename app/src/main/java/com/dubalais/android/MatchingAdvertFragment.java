@@ -12,28 +12,27 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.dubalais.android.adapter.SwipeCardAdapter;
 import com.dubalais.android.models.Advert;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
 import com.wenchao.cardstack.CardStack;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link annoncefragment.OnFragmentInteractionListener} interface
+ * {@link MatchingAdvertFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link annoncefragment#newInstance} factory method to
+ * Use the {@link MatchingAdvertFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class annoncefragment extends Fragment implements CardStack.CardEventListener {
+public class MatchingAdvertFragment extends Fragment implements CardStack.CardEventListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -57,7 +56,7 @@ public class annoncefragment extends Fragment implements CardStack.CardEventList
 
 
 
-    public annoncefragment() {
+    public MatchingAdvertFragment() {
         // Required empty public constructor
     }
 
@@ -67,11 +66,11 @@ public class annoncefragment extends Fragment implements CardStack.CardEventList
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment annoncefragment.
+     * @return A new instance of fragment MatchingAdvertFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static annoncefragment newInstance(String param1, String param2) {
-        annoncefragment fragment = new annoncefragment();
+    public static MatchingAdvertFragment newInstance(String param1, String param2) {
+        MatchingAdvertFragment fragment = new MatchingAdvertFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -198,7 +197,7 @@ public class annoncefragment extends Fragment implements CardStack.CardEventList
             b.putString("arrivee",Datalistannonce.get(swipecount).getaddresse());
             FragmentManager fragmentManager = getFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            lieuFragment fragment = new lieuFragment();
+            LieuFragment fragment = new LieuFragment();
             fragment.setArguments(b);
             fragmentTransaction.replace(R.id.contain_fragment, fragment);
             fragmentTransaction.addToBackStack(null);

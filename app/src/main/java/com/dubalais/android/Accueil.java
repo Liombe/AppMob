@@ -7,9 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
-public class Accueil extends AppCompatActivity implements annoncefragment.OnFragmentInteractionListener {
+public class Accueil extends AppCompatActivity implements MatchingAdvertFragment.OnFragmentInteractionListener {
 
     private DatabaseReference mDatabase;
 
@@ -22,7 +21,7 @@ public class Accueil extends AppCompatActivity implements annoncefragment.OnFrag
 
         Fragment fragment = null;
         Class fragmentClass = null;
-        fragmentClass = annoncefragment.class;
+        fragmentClass = MatchingAdvertFragment.class;
         try {
             fragment = (Fragment) fragmentClass.newInstance();
         } catch (Exception e) {

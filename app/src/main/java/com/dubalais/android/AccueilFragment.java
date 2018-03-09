@@ -12,12 +12,12 @@ import android.view.ViewGroup;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link accueilfragment.OnFragmentInteractionListener} interface
+ * {@link AccueilFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link accueilfragment#newInstance} factory method to
+ * Use the {@link AccueilFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class accueilfragment extends Fragment {
+public class AccueilFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -29,7 +29,7 @@ public class accueilfragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public accueilfragment() {
+    public AccueilFragment() {
         // Required empty public constructor
     }
 
@@ -39,11 +39,11 @@ public class accueilfragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment accueilfragment.
+     * @return A new instance of fragment AccueilFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static accueilfragment newInstance(String param1, String param2) {
-        accueilfragment fragment = new accueilfragment();
+    public static AccueilFragment newInstance(String param1, String param2) {
+        AccueilFragment fragment = new AccueilFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);

@@ -1,7 +1,6 @@
 package com.dubalais.android;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -27,7 +26,6 @@ import com.dubalais.android.models.Advert;
 import com.dubalais.android.models.Chore;
 import com.dubalais.android.models.User;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -38,8 +36,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import static com.google.firebase.internal.FirebaseAppHelper.getUid;
 
 
 /**
@@ -264,7 +260,7 @@ public class PostAdFragment extends Fragment {
                         fragmentManager = getFragmentManager();
                         fragmentTransaction = fragmentManager.beginTransaction();
 
-                        accueilfragment fragment = new accueilfragment();
+                        AccueilFragment fragment = new AccueilFragment();
                         fragmentTransaction.replace(R.id.contain_fragment, fragment);
                         fragmentTransaction.addToBackStack(null);
                         fragmentTransaction.commit();

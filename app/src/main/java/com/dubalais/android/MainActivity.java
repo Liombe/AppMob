@@ -10,22 +10,14 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ProgressBar;
-import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
-public class MainActivity extends AppCompatActivity implements accueilfragment.OnFragmentInteractionListener, annoncefragment.OnFragmentInteractionListener, PostAdFragment.OnFragmentInteractionListener, ViewAdFragment.OnFragmentInteractionListener{
+public class MainActivity extends AppCompatActivity implements AccueilFragment.OnFragmentInteractionListener, MatchingAdvertFragment.OnFragmentInteractionListener, PostAdFragment.OnFragmentInteractionListener, ViewAdFragment.OnFragmentInteractionListener{
 
     private FirebaseAuth.AuthStateListener authListener;
     private FirebaseAuth auth;
@@ -77,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements accueilfragment.O
         fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
 
-        accueilfragment fragment = new accueilfragment();
+        AccueilFragment fragment = new AccueilFragment();
         fragmentTransaction.replace(R.id.contain_fragment, fragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
@@ -121,7 +113,7 @@ public class MainActivity extends AppCompatActivity implements accueilfragment.O
         fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
 
-        accueilfragment fragment = new accueilfragment();
+        AccueilFragment fragment = new AccueilFragment();
         fragmentTransaction.replace(R.id.contain_fragment, fragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
@@ -133,7 +125,7 @@ public class MainActivity extends AppCompatActivity implements accueilfragment.O
         fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
 
-        annoncefragment fragment = new annoncefragment();
+        MatchingAdvertFragment fragment = new MatchingAdvertFragment();
         fragmentTransaction.replace(R.id.contain_fragment, fragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();

@@ -1,4 +1,4 @@
-package com.dubalais.android;
+package com.dubalais.android.adapter;
 
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.dubalais.android.R;
 import com.dubalais.android.models.Advert;
 import com.dubalais.android.viewholder.AdvertViewHolder;
 
