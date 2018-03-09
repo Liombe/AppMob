@@ -4,138 +4,763 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
     android:background="@color/fondGris"
+    android:fitsSystemWindows="true"
+    android:id="@+id/fullpage"
     tools:context="com.dubalais.android.SignupActivity">
 
-    <TextView
-        android:id="@+id/titre"
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/petitformalscript"
-        app:layout_constraintTop_toTopOf="@+id/guidelinedebut"
-        android:text="@string/titreInscription"
-        android:textSize="30sp"
-        android:textColor="@color/noir"
-        android:textAlignment="center"/>
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:fillViewport="false"
+        android:scrollbars="none">
 
-    <ImageView
-        android:id="@+id/logo"
-        android:layout_width="match_parent"
-        android:layout_height="220dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="30dp"
-        android:src="@mipmap/ic_launcher"
-        app:layout_constraintTop_toBottomOf="@+id/titre"
-        android:contentDescription="@string/descr_logo"/>
-
-    <LinearLayout
-        android:id="@+id/email"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@+id/logo"
-        android:layout_marginLeft="35dp"
-        android:layout_marginStart="35dp"
-        android:layout_marginEnd="35dp"
-        android:layout_marginRight="35dp"
-        android:background="@color/white"
-        android:layout_marginTop="10dp">
-
-        <ImageView
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            app:srcCompat="@drawable/user"
-            android:contentDescription="@string/descr_icon_user"/>
-        <EditText
-            android:id="@+id/txtemail"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="10"
-            android:hint="@string/hint_email"
-            android:paddingLeft="15dp"
-            android:inputType="textEmailAddress"
-            android:maxLines="1"
-            android:singleLine="true"
-            android:textColor="@android:color/black"
-            android:textColorHint="@color/grisClair"
-            android:background="@android:color/transparent"
-            android:fontFamily="@font/robotolight"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/motdepasse"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/email"
-        android:layout_marginLeft="35dp"
-        android:layout_marginStart="35dp"
-        android:layout_marginEnd="35dp"
-        android:layout_marginRight="35dp"
-        android:background="@color/white"
-        android:layout_marginTop="10dp">
-
-        <ImageView
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            app:srcCompat="@drawable/mdp"
-            android:contentDescription="@string/descr_icon_mdp"/>
-        <EditText
-            android:id="@+id/password"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:paddingLeft="15dp"
-            android:hint="@string/hint_password"
-            android:layout_weight="10"
-            android:inputType="textPassword"
-            android:maxLines="1"
-            android:singleLine="true"
-            android:imeOptions="actionUnspecified"
-            android:textColor="@android:color/black"
-            android:textColorHint="@color/grisClair"
-            android:background="@android:color/transparent"
-            android:fontFamily="@font/robotolight"/>
-    </LinearLayout>
-
-        <Button
-            android:id="@+id/sign_up_button"
-            style="?android:textAppearanceSmall"
+        <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:background="@color/white"
-            android:text="@string/action_sign_in_short"
-            android:textColor="@android:color/black"
-            android:fontFamily="@font/robotolight"
-            android:layout_marginLeft="115dp"
-            android:layout_marginStart="115dp"
-            android:layout_marginEnd="115dp"
-            android:layout_marginRight="115dp"
-            app:layout_constraintTop_toBottomOf="@id/motdepasse"/>
+            android:layout_height="wrap_content">
 
-        <Button
-            android:id="@+id/btn_reset_password"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dip"
-            android:background="@null"
-            android:text="@string/btn_forgot_password"
-            android:textAllCaps="false"
-            android:textColor="@color/colorAccent"
-            app:layout_constraintTop_toBottomOf="@id/sign_up_button"/>
+            <TextView
+                android:id="@+id/titre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/petitformalscript"
+                android:text="@string/titreInscription"
+                android:textAlignment="center"
+                android:textColor="@color/noir"
+                android:textSize="30sp"
+                app:layout_constraintTop_toTopOf="@+id/guidelinedebut" />
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_gravity="center|bottom"
-        android:layout_marginBottom="20dp"
-        android:visibility="gone" />
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/inscr1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:paddingBottom="55dp"
+                android:visibility="visible"
+                app:layout_constraintTop_toBottomOf="@id/titre">
 
-    <android.support.constraint.Guideline
-        android:id="@+id/guidelinedebut"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.02" />
+                <ImageView
+                    android:id="@+id/logo"
+                    android:layout_width="match_parent"
+                    android:layout_height="220dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="30dp"
+                    android:contentDescription="@string/descr_logo"
+                    android:src="@drawable/logo" />
+
+                <LinearLayout
+                    android:id="@+id/email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="35dp"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginRight="35dp"
+                    android:layout_marginStart="35dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/white"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/logo">
+
+                    <ImageView
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:contentDescription="@string/descr_icon_user"
+                        app:srcCompat="@drawable/user" />
+
+                    <EditText
+                        android:id="@+id/txtemail"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="10"
+                        android:background="@android:color/transparent"
+                        android:fontFamily="@font/robotolight"
+                        android:hint="@string/hint_email"
+                        android:inputType="textEmailAddress"
+                        android:maxLines="1"
+                        android:paddingLeft="15dp"
+                        android:singleLine="true"
+                        android:textColor="@android:color/black"
+                        android:textColorHint="@color/grisClair" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/motdepasse"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="35dp"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginRight="35dp"
+                    android:layout_marginStart="35dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/white"
+                    app:layout_constraintTop_toBottomOf="@+id/email">
+
+                    <ImageView
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:contentDescription="@string/descr_icon_mdp"
+                        app:srcCompat="@drawable/mdp" />
+
+                    <EditText
+                        android:id="@+id/password"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="10"
+                        android:background="@android:color/transparent"
+                        android:fontFamily="@font/robotolight"
+                        android:hint="@string/hint_password"
+                        android:imeOptions="actionUnspecified"
+                        android:inputType="textPassword"
+                        android:maxLines="1"
+                        android:paddingLeft="15dp"
+                        android:singleLine="true"
+                        android:textColor="@android:color/black"
+                        android:textColorHint="@color/grisClair" />
+                </LinearLayout>
+
+                <RadioGroup
+                    android:id="@+id/contain_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    app:layout_constraintTop_toBottomOf="@+id/motdepasse">
+
+                    <android.support.constraint.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <RadioButton
+                            android:id="@+id/fournisseur"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="20dp"
+                            android:layout_marginRight="20dp"
+                            android:fontFamily="@font/robotolight"
+                            android:onClick="onRadioButtonClicked"
+                            android:text="@string/titrefourn"
+                            android:textSize="16sp"
+                            app:layout_constraintEnd_toStartOf="@id/guidelinebtn" />
+
+                        <RadioButton
+                            android:id="@+id/demandeur"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginStart="20dp"
+                            android:fontFamily="@font/robotolight"
+                            android:onClick="onRadioButtonClicked"
+                            android:text="@string/titredem"
+                            android:textSize="16sp"
+                            app:layout_constraintStart_toStartOf="@id/guidelinebtn" />
+
+                        <android.support.constraint.Guideline
+                            android:id="@+id/guidelinebtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            app:layout_constraintGuide_percent="0.5" />
+                    </android.support.constraint.ConstraintLayout>
+                </RadioGroup>
+
+                <Button
+                    android:id="@+id/btn_suite"
+                    style="?android:textAppearanceSmall"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="115dp"
+                    android:layout_marginLeft="115dp"
+                    android:layout_marginRight="115dp"
+                    android:layout_marginStart="115dp"
+                    android:layout_marginTop="25dp"
+                    android:background="@color/white"
+                    android:fontFamily="@font/robotolight"
+                    android:onClick="suiteClicked"
+                    android:text="@string/btn_suite"
+                    android:textColor="@android:color/black"
+                    app:layout_constraintTop_toBottomOf="@id/contain_btn" />
+
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/incr_fourn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="55dp"
+                android:layout_marginTop="10dp"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@id/titre">
+
+                <LinearLayout
+                    android:id="@+id/nomF"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="35dp"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginRight="35dp"
+                    android:layout_marginStart="35dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/white"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:contentDescription="@string/descr_icon_user"
+                        app:srcCompat="@drawable/user" />
+
+                    <EditText
+                        android:id="@+id/txtnom"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="10"
+                        android:background="@android:color/transparent"
+                        android:fontFamily="@font/robotolight"
+                        android:hint="@string/hint_nom"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:paddingLeft="15dp"
+                        android:singleLine="true"
+                        android:textColor="@android:color/black"
+                        android:textColorHint="@color/grisClair" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/prenomF"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="35dp"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginRight="35dp"
+                    android:layout_marginStart="35dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/white"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/nomF">
+
+                    <ImageView
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:contentDescription="@string/descr_icon_user"
+                        app:srcCompat="@drawable/user" />
+
+                    <EditText
+                        android:id="@+id/txtprenom"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="10"
+                        android:background="@android:color/transparent"
+                        android:fontFamily="@font/robotolight"
+                        android:hint="@string/hint_prenom"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:paddingLeft="15dp"
+                        android:singleLine="true"
+                        android:textColor="@android:color/black"
+                        android:textColorHint="@color/grisClair" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/adresseF"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="35dp"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginRight="35dp"
+                    android:layout_marginStart="35dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/white"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/prenomF">
+
+                    <ImageView
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:contentDescription="@string/descr_icon_user"
+                        app:srcCompat="@drawable/user" />
+
+                    <EditText
+                        android:id="@+id/txtadresse"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="10"
+                        android:background="@android:color/transparent"
+                        android:fontFamily="@font/robotolight"
+                        android:hint="@string/hint_adresse"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:paddingLeft="15dp"
+                        android:singleLine="true"
+                        android:textColor="@android:color/black"
+                        android:textColorHint="@color/grisClair" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/rayonF"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="35dp"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginRight="35dp"
+                    android:layout_marginStart="35dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/white"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/adresseF">
+
+                    <ImageView
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:contentDescription="@string/descr_icon_user"
+                        app:srcCompat="@drawable/user" />
+
+                    <EditText
+                        android:id="@+id/txtrayon"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="10"
+                        android:background="@android:color/transparent"
+                        android:fontFamily="@font/robotolight"
+                        android:hint="@string/hint_rayon"
+                        android:inputType="number"
+                        android:maxLines="1"
+                        android:paddingLeft="15dp"
+                        android:singleLine="true"
+                        android:textColor="@android:color/black"
+                        android:textColorHint="@color/grisClair" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/telF"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="35dp"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginRight="35dp"
+                    android:layout_marginStart="35dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/white"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/rayonF">
+
+                    <ImageView
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:contentDescription="@string/descr_icon_user"
+                        app:srcCompat="@drawable/user" />
+
+                    <EditText
+                        android:id="@+id/txttel"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="10"
+                        android:background="@android:color/transparent"
+                        android:fontFamily="@font/robotolight"
+                        android:hint="@string/hint_tel"
+                        android:inputType="phone"
+                        android:maxLines="1"
+                        android:paddingLeft="15dp"
+                        android:singleLine="true"
+                        android:textColor="@android:color/black"
+                        android:textColorHint="@color/grisClair" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/titre_tache"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:fontFamily="@font/petitformalscript"
+                    android:text="@string/titre_tache"
+                    android:textAlignment="center"
+                    android:textColor="@color/noir"
+                    android:textSize="17sp"
+                    app:layout_constraintTop_toBottomOf="@id/telF" />
+
+                <FrameLayout
+                    android:id="@+id/contain_tache"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/titre_tache">
+
+
+                </FrameLayout>
+
+                <LinearLayout
+                    android:id="@+id/prixF"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="35dp"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginRight="35dp"
+                    android:layout_marginStart="35dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/white"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/contain_tache">
+
+                    <ImageView
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:contentDescription="@string/descr_icon_user"
+                        app:srcCompat="@drawable/user" />
+
+                    <EditText
+                        android:id="@+id/txtprix"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="10"
+                        android:background="@android:color/transparent"
+                        android:fontFamily="@font/robotolight"
+                        android:hint="@string/hint_prix"
+                        android:inputType="number"
+                        android:maxLines="1"
+                        android:paddingLeft="15dp"
+                        android:singleLine="true"
+                        android:textColor="@android:color/black"
+                        android:textColorHint="@color/grisClair" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/prixF2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="35dp"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginRight="35dp"
+                    android:layout_marginStart="35dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/white"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/prixF">
+
+                    <ImageView
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:contentDescription="@string/descr_icon_user"
+                        app:srcCompat="@drawable/user" />
+
+                    <EditText
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="10"
+                        android:background="@android:color/transparent"
+                        android:fontFamily="@font/robotolight"
+                        android:hint="@string/hint_prix"
+                        android:inputType="number"
+                        android:maxLines="1"
+                        android:paddingLeft="15dp"
+                        android:singleLine="true"
+                        android:textColor="@android:color/black"
+                        android:textColorHint="@color/grisClair" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/prixF3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="35dp"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginRight="35dp"
+                    android:layout_marginStart="35dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/white"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/prixF2">
+
+                    <ImageView
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:contentDescription="@string/descr_icon_user"
+                        app:srcCompat="@drawable/user" />
+
+                    <EditText
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="10"
+                        android:background="@android:color/transparent"
+                        android:fontFamily="@font/robotolight"
+                        android:hint="@string/hint_prix"
+                        android:inputType="number"
+                        android:maxLines="1"
+                        android:paddingLeft="15dp"
+                        android:singleLine="true"
+                        android:textColor="@android:color/black"
+                        android:textColorHint="@color/grisClair" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/prixF4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="35dp"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginRight="35dp"
+                    android:layout_marginStart="35dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/white"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/prixF3">
+
+                    <ImageView
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:contentDescription="@string/descr_icon_user"
+                        app:srcCompat="@drawable/user" />
+
+                    <EditText
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="10"
+                        android:background="@android:color/transparent"
+                        android:fontFamily="@font/robotolight"
+                        android:hint="@string/hint_prix"
+                        android:inputType="number"
+                        android:maxLines="1"
+                        android:paddingLeft="15dp"
+                        android:singleLine="true"
+                        android:textColor="@android:color/black"
+                        android:textColorHint="@color/grisClair" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/prixF5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="35dp"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginRight="35dp"
+                    android:layout_marginStart="35dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/white"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/prixF4">
+
+                    <ImageView
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:contentDescription="@string/descr_icon_user"
+                        app:srcCompat="@drawable/user" />
+
+                    <EditText
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="10"
+                        android:background="@android:color/transparent"
+                        android:fontFamily="@font/robotolight"
+                        android:hint="@string/hint_prix"
+                        android:inputType="number"
+                        android:maxLines="1"
+                        android:paddingLeft="15dp"
+                        android:singleLine="true"
+                        android:textColor="@android:color/black"
+                        android:textColorHint="@color/grisClair" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/sign_up_button"
+                    style="?android:textAppearanceSmall"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="115dp"
+                    android:layout_marginLeft="115dp"
+                    android:layout_marginRight="115dp"
+                    android:layout_marginStart="115dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginBottom="30dp"
+                    android:background="@color/white"
+                    android:fontFamily="@font/robotolight"
+                    android:text="@string/action_sign_in_short"
+                    android:textColor="@android:color/black"
+                    app:layout_constraintTop_toBottomOf="@id/prixF5" />
+
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/incr_dem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="55dp"
+                android:layout_marginTop="10dp"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@id/titre">
+
+                <LinearLayout
+                    android:id="@+id/nomD"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="35dp"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginRight="35dp"
+                    android:layout_marginStart="35dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/white"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:contentDescription="@string/descr_icon_user"
+                        app:srcCompat="@drawable/user" />
+
+                    <EditText
+                        android:id="@+id/txtnomD"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="10"
+                        android:background="@android:color/transparent"
+                        android:fontFamily="@font/robotolight"
+                        android:hint="@string/hint_nom"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:paddingLeft="15dp"
+                        android:singleLine="true"
+                        android:textColor="@android:color/black"
+                        android:textColorHint="@color/grisClair" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/prenomD"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="35dp"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginRight="35dp"
+                    android:layout_marginStart="35dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/white"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/nomD">
+
+                    <ImageView
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:contentDescription="@string/descr_icon_user"
+                        app:srcCompat="@drawable/user" />
+
+                    <EditText
+                        android:id="@+id/txtprenomD"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="10"
+                        android:background="@android:color/transparent"
+                        android:fontFamily="@font/robotolight"
+                        android:hint="@string/hint_prenom"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:paddingLeft="15dp"
+                        android:singleLine="true"
+                        android:textColor="@android:color/black"
+                        android:textColorHint="@color/grisClair" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/adresseD"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="35dp"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginRight="35dp"
+                    android:layout_marginStart="35dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/white"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/prenomD">
+
+                    <ImageView
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:contentDescription="@string/descr_icon_user"
+                        app:srcCompat="@drawable/user" />
+
+                    <EditText
+                        android:id="@+id/txtadresseD"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="10"
+                        android:background="@android:color/transparent"
+                        android:fontFamily="@font/robotolight"
+                        android:hint="@string/hint_adresse"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:paddingLeft="15dp"
+                        android:singleLine="true"
+                        android:textColor="@android:color/black"
+                        android:textColorHint="@color/grisClair" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/telD"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="35dp"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginRight="35dp"
+                    android:layout_marginStart="35dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/white"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/adresseD">
+
+                    <ImageView
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:contentDescription="@string/descr_icon_user"
+                        app:srcCompat="@drawable/user" />
+
+                    <EditText
+                        android:id="@+id/txttelD"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="10"
+                        android:background="@android:color/transparent"
+                        android:fontFamily="@font/robotolight"
+                        android:hint="@string/hint_tel"
+                        android:inputType="phone"
+                        android:maxLines="1"
+                        android:paddingLeft="15dp"
+                        android:singleLine="true"
+                        android:textColor="@android:color/black"
+                        android:textColorHint="@color/grisClair" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/sign_up_button2"
+                    style="?android:textAppearanceSmall"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="115dp"
+                    android:layout_marginLeft="115dp"
+                    android:layout_marginRight="115dp"
+                    android:layout_marginStart="115dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginBottom="30dp"
+                    android:background="@color/white"
+                    android:fontFamily="@font/robotolight"
+                    android:text="@string/action_sign_in_short"
+                    android:textColor="@android:color/black"
+                    app:layout_constraintTop_toBottomOf="@id/telD" />
+            </android.support.constraint.ConstraintLayout>
+
+            <!--app:layout_constraintTop_toBottomOf="@id/contain_btn"-->
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center|bottom"
+                android:layout_marginBottom="20dp"
+                android:visibility="gone" />
+
+
+            <android.support.constraint.Guideline
+                android:id="@+id/guidelinedebut"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.02" />
+        </android.support.constraint.ConstraintLayout>
+    </ScrollView>
+
 </android.support.constraint.ConstraintLayout>

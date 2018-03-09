@@ -23,8 +23,10 @@
         android:id="@+id/logo"
         android:layout_width="match_parent"
         android:layout_height="220dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="30dp"
         android:layout_gravity="center_horizontal"
-        android:src="@mipmap/ic_launcher"
+        android:src="@drawable/logo"
         app:layout_constraintTop_toBottomOf="@+id/titre"
         android:contentDescription="@string/descr_logo"/>
 
@@ -96,7 +98,7 @@
             android:id="@+id/btn_login"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="20dp"
             android:background="@color/white"
             android:text="@string/btn_login"
             app:layout_constraintTop_toBottomOf="@+id/motdepasse"
@@ -111,12 +113,23 @@
             android:id="@+id/btn_reset_password"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:background="@null"
             android:text="@string/btn_forgot_password"
             android:textAllCaps="false"
+            android:fontFamily="@font/robotoregular"
             android:textColor="@color/noir"
             app:layout_constraintTop_toBottomOf="@+id/btn_login"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintRight_toRightOf="parent"
+            android:text="@string/titreswap"
+            android:textColor="@color/noir"
+            app:layout_constraintEnd_toEndOf="@id/guidelineend"
+            android:fontFamily="@font/petitformalscript"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_reset_password"/>
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -132,5 +145,11 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.02" />
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.95" />
 
 </android.support.constraint.ConstraintLayout>

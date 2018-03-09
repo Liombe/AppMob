@@ -16,9 +16,21 @@
     <string name="titreConnexion">Connexion</string>
     <string name="titreInscription">Inscription</string>
     <string name="titreMenu">Du Balai !</string>
+    <string name="titrefourn">Fournisseur</string>
+    <string name="titredem">Demandeur</string>
+    <string name="titreswap">Swap pour t\'inscrire</string>
+    <string name="titre_tache">Choississez vos tâches</string>
 
 
     <string name="btn_deco">Deconnexion</string>
+    <string name="btn_suite">Suite</string>
+
+    <string name="hint_nom">Votre nom</string>
+    <string name="hint_prenom">Votre prénom</string>
+    <string name="hint_tel">Numéro de téléphone</string>
+    <string name="hint_adresse">Adresse</string>
+    <string name="hint_rayon">Rayon d\'action (en km)</string>
+    <string name="hint_prix">Prix</string>
 
     <string name="action_sign_in_short">S\'inscrire</string>
     <string name="email">Email</string>
