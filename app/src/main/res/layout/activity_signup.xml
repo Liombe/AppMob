@@ -558,7 +558,7 @@
                         android:textColorHint="@color/grisClair" />
                 </LinearLayout>
 
-                <Button
+               <Button
                     android:id="@+id/sign_up_button"
                     style="?android:textAppearanceSmall"
                     android:layout_width="match_parent"
@@ -725,7 +725,7 @@
                         android:textColorHint="@color/grisClair" />
                 </LinearLayout>
 
-                <Button
+               <Button
                     android:id="@+id/sign_up_button2"
                     style="?android:textAppearanceSmall"
                     android:layout_width="match_parent"

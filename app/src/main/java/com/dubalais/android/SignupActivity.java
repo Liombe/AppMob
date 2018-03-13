@@ -2,6 +2,7 @@ package com.dubalais.android;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
@@ -43,13 +44,18 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class SignupActivity extends AppCompatActivity implements OnClickListener{
+public class SignupActivity extends AppCompatActivity implements OnClickListener, PlaceholderFragment.OnFragmentInteractionListener{
 
     private EditText inputEmail, inputPassword;
     private Button btnSignUp2, btnSignUp, btnResetPassword;
     private ProgressBar progressBar;
     private FirebaseAuth auth;
     private static DatabaseReference db;
+
+
+    private FragmentTransaction fragmentTransaction;
+    private FragmentManager fragmentManager;
+
 
     private String typePersonne="";
 
@@ -96,12 +102,12 @@ public class SignupActivity extends AppCompatActivity implements OnClickListener
         };
 
 
+        fragmentManager = getSupportFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
+
         PlaceholderFragment fragment = new PlaceholderFragment();
-
-        FragmentManager  fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
-        fragmentTransaction.add(R.id.contain_tache, fragment);
+        fragmentTransaction.replace(R.id.contain_tache, fragment);
+        fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
 
     }
@@ -229,8 +235,8 @@ public class SignupActivity extends AppCompatActivity implements OnClickListener
                 cF.setVisibility(View.VISIBLE);
                 break;
             case "demandeur":
-                cl.setVisibility(View.GONE);
                 cD.setVisibility(View.VISIBLE);
+                cl.setVisibility(View.GONE);
                 break;
             case "":
                 Toast.makeText(getApplicationContext(), "Choisissez un type", Toast.LENGTH_SHORT).show();
@@ -238,41 +244,9 @@ public class SignupActivity extends AppCompatActivity implements OnClickListener
         }
     }
 
-    public static class PlaceholderFragment extends Fragment {
-        public PlaceholderFragment() { }
 
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-            //final ConstraintLayout cl = findViewById();
-            final View view = inflater.inflate(R.layout.activity_signup, container, false);
-            //View view = new View(SignupActivity.this, null);
-            final FrameLayout cl = view.findViewById(R.id.contain_tache);
+    @Override
+    public void onFragmentInteraction(Uri uri) {
 
-            db.child("chores").addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    for(DataSnapshot child: dataSnapshot.getChildren()){
-                        String chId = child.getKey();
-                        Chore ch = child.getValue(Chore.class);
-                        ch.uid=chId;
-                        CheckBox check = new CheckBox(view.getContext());
-                        String title = ch.title.substring(0,1).toUpperCase() + ch.title.substring(1);
-                        check.setId(Integer.parseInt(ch.uid));
-                        check.setText(title);
-                        check.setTextColor(ContextCompat.getColor(view.getContext(), R.color.grisClair));
-
-                        Log.d("ceciestuntag", "jedebug1");
-                        cl.addView(check);
-                    }
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-
-                }
-            });
-
-            return view;
-        }
     }
 }
