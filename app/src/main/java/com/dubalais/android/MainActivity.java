@@ -17,7 +17,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 
-public class MainActivity extends AppCompatActivity implements AccueilFragment.OnFragmentInteractionListener, MatchingAdvertFragment.OnFragmentInteractionListener, PostAdFragment.OnFragmentInteractionListener, ViewAdFragment.OnFragmentInteractionListener{
+public class MainActivity extends AppCompatActivity implements AccueilFragment.OnFragmentInteractionListener, annoncefragment.OnFragmentInteractionListener, PostAdFragment.OnFragmentInteractionListener, ViewAdFragment.OnFragmentInteractionListener{
 
     private FirebaseAuth.AuthStateListener authListener;
     private FirebaseAuth auth;
@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity implements AccueilFragment.O
         fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
 
-        MatchingAdvertFragment fragment = new MatchingAdvertFragment();
+        annoncefragment fragment = new annoncefragment();
         fragmentTransaction.replace(R.id.contain_fragment, fragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();

@@ -200,7 +200,7 @@ public class PostAdFragment extends Fragment {
 
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
-
+                    Toast.makeText(view.getContext(), ""+databaseError, Toast.LENGTH_SHORT).show();
                 }
             });
         }else{

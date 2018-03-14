@@ -38,7 +38,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:paddingBottom="55dp"
-                android:visibility="visible"
                 app:layout_constraintTop_toBottomOf="@id/titre">
 
                 <ImageView
@@ -187,8 +186,8 @@
                 android:id="@+id/incr_fourn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="55dp"
                 android:layout_marginTop="10dp"
+                android:paddingBottom="55dp"
                 android:visibility="gone"
                 app:layout_constraintTop_toBottomOf="@id/titre">
 
@@ -262,7 +261,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/adresseF"
+                    android:id="@+id/voieF"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="35dp"
@@ -281,13 +280,83 @@
                         app:srcCompat="@drawable/user" />
 
                     <EditText
-                        android:id="@+id/txtadresse"
+                        android:id="@+id/txtVoieF"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="10"
                         android:background="@android:color/transparent"
                         android:fontFamily="@font/robotolight"
-                        android:hint="@string/hint_adresse"
+                        android:hint="Voie"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:paddingLeft="15dp"
+                        android:singleLine="true"
+                        android:textColor="@android:color/black"
+                        android:textColorHint="@color/grisClair" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/zipCodeF"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="35dp"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginRight="35dp"
+                    android:layout_marginStart="35dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/white"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/voieF">
+
+                    <ImageView
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:contentDescription="@string/descr_icon_user"
+                        app:srcCompat="@drawable/user" />
+
+                    <EditText
+                        android:id="@+id/txtZipCode"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="10"
+                        android:background="@android:color/transparent"
+                        android:fontFamily="@font/robotolight"
+                        android:hint="Code Postal"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:paddingLeft="15dp"
+                        android:singleLine="true"
+                        android:textColor="@android:color/black"
+                        android:textColorHint="@color/grisClair" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/cityF"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="35dp"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginRight="35dp"
+                    android:layout_marginStart="35dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/white"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/zipCodeF">
+
+                    <ImageView
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:contentDescription="@string/descr_icon_user"
+                        app:srcCompat="@drawable/user" />
+
+                    <EditText
+                        android:id="@+id/txtCityF"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="10"
+                        android:background="@android:color/transparent"
+                        android:fontFamily="@font/robotolight"
+                        android:hint="Ville"
                         android:inputType="text"
                         android:maxLines="1"
                         android:paddingLeft="15dp"
@@ -307,7 +376,7 @@
                     android:layout_marginTop="15dp"
                     android:background="@color/white"
                     android:orientation="horizontal"
-                    app:layout_constraintTop_toBottomOf="@+id/adresseF">
+                    app:layout_constraintTop_toBottomOf="@+id/cityF">
 
                     <ImageView
                         android:layout_width="45dp"
@@ -378,202 +447,38 @@
                     android:textSize="17sp"
                     app:layout_constraintTop_toBottomOf="@id/telF" />
 
-                <FrameLayout
+                <LinearLayout
                     android:id="@+id/contain_tache"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="35dp"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginRight="35dp"
+                    android:layout_marginStart="35dp"
+                    android:layout_marginTop="15dp"
+                    android:orientation="vertical"
                     app:layout_constraintTop_toBottomOf="@+id/titre_tache">
 
 
-                </FrameLayout>
-
-                <LinearLayout
-                    android:id="@+id/prixF"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="35dp"
-                    android:layout_marginLeft="35dp"
-                    android:layout_marginRight="35dp"
-                    android:layout_marginStart="35dp"
-                    android:layout_marginTop="15dp"
-                    android:background="@color/white"
-                    android:orientation="horizontal"
-                    app:layout_constraintTop_toBottomOf="@+id/contain_tache">
-
-                    <ImageView
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
-                        android:contentDescription="@string/descr_icon_user"
-                        app:srcCompat="@drawable/user" />
-
-                    <EditText
-                        android:id="@+id/txtprix"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="10"
-                        android:background="@android:color/transparent"
-                        android:fontFamily="@font/robotolight"
-                        android:hint="@string/hint_prix"
-                        android:inputType="number"
-                        android:maxLines="1"
-                        android:paddingLeft="15dp"
-                        android:singleLine="true"
-                        android:textColor="@android:color/black"
-                        android:textColorHint="@color/grisClair" />
                 </LinearLayout>
 
-                <LinearLayout
-                    android:id="@+id/prixF2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="35dp"
-                    android:layout_marginLeft="35dp"
-                    android:layout_marginRight="35dp"
-                    android:layout_marginStart="35dp"
-                    android:layout_marginTop="15dp"
-                    android:background="@color/white"
-                    android:orientation="horizontal"
-                    app:layout_constraintTop_toBottomOf="@+id/prixF">
 
-                    <ImageView
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
-                        android:contentDescription="@string/descr_icon_user"
-                        app:srcCompat="@drawable/user" />
-
-                    <EditText
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="10"
-                        android:background="@android:color/transparent"
-                        android:fontFamily="@font/robotolight"
-                        android:hint="@string/hint_prix"
-                        android:inputType="number"
-                        android:maxLines="1"
-                        android:paddingLeft="15dp"
-                        android:singleLine="true"
-                        android:textColor="@android:color/black"
-                        android:textColorHint="@color/grisClair" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/prixF3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="35dp"
-                    android:layout_marginLeft="35dp"
-                    android:layout_marginRight="35dp"
-                    android:layout_marginStart="35dp"
-                    android:layout_marginTop="15dp"
-                    android:background="@color/white"
-                    android:orientation="horizontal"
-                    app:layout_constraintTop_toBottomOf="@+id/prixF2">
-
-                    <ImageView
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
-                        android:contentDescription="@string/descr_icon_user"
-                        app:srcCompat="@drawable/user" />
-
-                    <EditText
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="10"
-                        android:background="@android:color/transparent"
-                        android:fontFamily="@font/robotolight"
-                        android:hint="@string/hint_prix"
-                        android:inputType="number"
-                        android:maxLines="1"
-                        android:paddingLeft="15dp"
-                        android:singleLine="true"
-                        android:textColor="@android:color/black"
-                        android:textColorHint="@color/grisClair" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/prixF4"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="35dp"
-                    android:layout_marginLeft="35dp"
-                    android:layout_marginRight="35dp"
-                    android:layout_marginStart="35dp"
-                    android:layout_marginTop="15dp"
-                    android:background="@color/white"
-                    android:orientation="horizontal"
-                    app:layout_constraintTop_toBottomOf="@+id/prixF3">
-
-                    <ImageView
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
-                        android:contentDescription="@string/descr_icon_user"
-                        app:srcCompat="@drawable/user" />
-
-                    <EditText
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="10"
-                        android:background="@android:color/transparent"
-                        android:fontFamily="@font/robotolight"
-                        android:hint="@string/hint_prix"
-                        android:inputType="number"
-                        android:maxLines="1"
-                        android:paddingLeft="15dp"
-                        android:singleLine="true"
-                        android:textColor="@android:color/black"
-                        android:textColorHint="@color/grisClair" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/prixF5"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="35dp"
-                    android:layout_marginLeft="35dp"
-                    android:layout_marginRight="35dp"
-                    android:layout_marginStart="35dp"
-                    android:layout_marginTop="15dp"
-                    android:background="@color/white"
-                    android:orientation="horizontal"
-                    app:layout_constraintTop_toBottomOf="@+id/prixF4">
-
-                    <ImageView
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
-                        android:contentDescription="@string/descr_icon_user"
-                        app:srcCompat="@drawable/user" />
-
-                    <EditText
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="10"
-                        android:background="@android:color/transparent"
-                        android:fontFamily="@font/robotolight"
-                        android:hint="@string/hint_prix"
-                        android:inputType="number"
-                        android:maxLines="1"
-                        android:paddingLeft="15dp"
-                        android:singleLine="true"
-                        android:textColor="@android:color/black"
-                        android:textColorHint="@color/grisClair" />
-                </LinearLayout>
-
-               <Button
+                <Button
                     android:id="@+id/sign_up_button"
                     style="?android:textAppearanceSmall"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="30dp"
                     android:layout_marginEnd="115dp"
                     android:layout_marginLeft="115dp"
                     android:layout_marginRight="115dp"
                     android:layout_marginStart="115dp"
                     android:layout_marginTop="25dp"
-                    android:layout_marginBottom="30dp"
                     android:background="@color/white"
                     android:fontFamily="@font/robotolight"
                     android:text="@string/action_sign_in_short"
                     android:textColor="@android:color/black"
-                    app:layout_constraintTop_toBottomOf="@id/prixF5" />
+                    app:layout_constraintTop_toBottomOf="@id/contain_tache" />
 
             </android.support.constraint.ConstraintLayout>
 
@@ -581,8 +486,8 @@
                 android:id="@+id/incr_dem"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="55dp"
                 android:layout_marginTop="10dp"
+                android:paddingBottom="55dp"
                 android:visibility="gone"
                 app:layout_constraintTop_toBottomOf="@id/titre">
 
@@ -656,7 +561,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/adresseD"
+                    android:id="@+id/voieD"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="35dp"
@@ -675,13 +580,83 @@
                         app:srcCompat="@drawable/user" />
 
                     <EditText
-                        android:id="@+id/txtadresseD"
+                        android:id="@+id/txtVoieD"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="10"
                         android:background="@android:color/transparent"
                         android:fontFamily="@font/robotolight"
-                        android:hint="@string/hint_adresse"
+                        android:hint="Voie"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:paddingLeft="15dp"
+                        android:singleLine="true"
+                        android:textColor="@android:color/black"
+                        android:textColorHint="@color/grisClair" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/zipCodeD"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="35dp"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginRight="35dp"
+                    android:layout_marginStart="35dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/white"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/voieD">
+
+                    <ImageView
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:contentDescription="@string/descr_icon_user"
+                        app:srcCompat="@drawable/user" />
+
+                    <EditText
+                        android:id="@+id/txtZipCodeD"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="10"
+                        android:background="@android:color/transparent"
+                        android:fontFamily="@font/robotolight"
+                        android:hint="Code Postal"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:paddingLeft="15dp"
+                        android:singleLine="true"
+                        android:textColor="@android:color/black"
+                        android:textColorHint="@color/grisClair" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/cityD"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="35dp"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginRight="35dp"
+                    android:layout_marginStart="35dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/white"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/zipCodeD">
+
+                    <ImageView
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:contentDescription="@string/descr_icon_user"
+                        app:srcCompat="@drawable/user" />
+
+                    <EditText
+                        android:id="@+id/txtCityD"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="10"
+                        android:background="@android:color/transparent"
+                        android:fontFamily="@font/robotolight"
+                        android:hint="Ville"
                         android:inputType="text"
                         android:maxLines="1"
                         android:paddingLeft="15dp"
@@ -701,7 +676,7 @@
                     android:layout_marginTop="15dp"
                     android:background="@color/white"
                     android:orientation="horizontal"
-                    app:layout_constraintTop_toBottomOf="@+id/adresseD">
+                    app:layout_constraintTop_toBottomOf="@+id/cityD">
 
                     <ImageView
                         android:layout_width="45dp"
@@ -725,17 +700,17 @@
                         android:textColorHint="@color/grisClair" />
                 </LinearLayout>
 
-               <Button
+                <Button
                     android:id="@+id/sign_up_button2"
                     style="?android:textAppearanceSmall"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="30dp"
                     android:layout_marginEnd="115dp"
                     android:layout_marginLeft="115dp"
                     android:layout_marginRight="115dp"
                     android:layout_marginStart="115dp"
                     android:layout_marginTop="25dp"
-                    android:layout_marginBottom="30dp"
                     android:background="@color/white"
                     android:fontFamily="@font/robotolight"
                     android:text="@string/action_sign_in_short"

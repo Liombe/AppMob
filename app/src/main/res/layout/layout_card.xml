@@ -3,30 +3,51 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#C0C0C0" >
 
+>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/petitformalscript"
         android:id="@+id/texttitre"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        />
+        android:textSize="24sp"
+        android:text="titre:" />
+
+
+    <TextView
+        android:id="@+id/textdesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/textville"
+        android:layout_alignRight="@+id/textville"
+        android:layout_below="@+id/texttitre"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/robotolight"
+        android:text="desc"
+        android:textColor="@color/bg_register"
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/textanonceur"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/texttitre"
+        android:layout_below="@+id/textdesc"
+        android:fontFamily="@font/robotolight"
+        android:textColor="@color/bg_register"
+        android:textSize="18sp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="46dp"
-        />
+        android:layout_marginTop="96dp"
+        android:text="Annonceur:" />
 
     <TextView
         android:id="@+id/textprix"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textanonceur"
+        android:layout_below="@id/textanonceur"
+        android:fontFamily="@font/robotolight"
+        android:textColor="@color/bg_register"
+        android:textSize="18sp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="75dp"
         android:text="Prix:" />
@@ -35,19 +56,17 @@
         android:id="@+id/textville"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textprix"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="47dp"
-        android:text="Ville" />
 
-    <TextView
-        android:id="@+id/textdesc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/textville"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="36dp"
-        android:text="desc" />
+        android:layout_alignLeft="@+id/textprix"
+        android:layout_alignStart="@+id/textprix"
+        android:layout_below="@+id/textanonceur"
+        android:layout_marginTop="21dp"
+        android:fontFamily="@font/robotolight"
+        android:text="Ville"
+        android:textColor="@color/bg_register"
+        android:textSize="18sp" />
+
+
 
 
 </RelativeLayout>

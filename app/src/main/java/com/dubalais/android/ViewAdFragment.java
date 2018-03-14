@@ -110,7 +110,7 @@ public class ViewAdFragment extends Fragment {
                         fragmentManager = getFragmentManager();
                         fragmentTransaction = fragmentManager.beginTransaction();
 
-                        MatchingAdvertFragment fragment = new MatchingAdvertFragment();
+                        annoncefragment fragment = new annoncefragment();
                         fragment.setAd(ads.get(i));
                         fragmentTransaction.replace(R.id.contain_fragment, fragment);
                         fragmentTransaction.addToBackStack(null);
