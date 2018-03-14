@@ -93,9 +93,9 @@ public class Advert {
     }
 
     public  String getchore(){
-        String s="";
+        String s="Les tâches:\n";
         for (int i=0;i<this.chores.size();i++){
-            s+=this.chores.get(i).title+" ";
+            s+=this.chores.get(i).title+"\n";
         }
         return s;
     }

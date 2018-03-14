@@ -1,6 +1,8 @@
 package com.dubalais.android;
 
+import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -83,7 +85,7 @@ public class annoncefragment extends Fragment implements CardStack.CardEventList
     private FusedLocationProviderClient mFusedLocationClient;
     private LatLng latLng;
     private LocationCallback mLocationCallback;
-    private float distMAX = 1000;
+    private float distMAX = 10000;
 
 
     public annoncefragment() {
@@ -190,6 +192,19 @@ public class annoncefragment extends Fragment implements CardStack.CardEventList
         if (direction == 1) {
 
             Toast.makeText(getActivity().getApplicationContext(),/*swiped_card_text+*/" Swipped to right", Toast.LENGTH_SHORT).show();
+            String mailto = "mailto:"+Datalistannonce.get(swipecount).getadvertiser() +
+                    "?cc=" + "" +
+                    "&subject=" + Uri.encode(Datalistannonce.get(swipecount).getTitle()) +
+                    "&body=" + Uri.encode("Bonjour,");
+
+            Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
+            emailIntent.setData(Uri.parse(mailto));
+
+            try {
+                startActivity(emailIntent);
+            } catch (ActivityNotFoundException e) {
+                //TODO: Handle case where no email app is available
+            }
 
         } else if (direction == 0) {
 
@@ -207,7 +222,7 @@ public class annoncefragment extends Fragment implements CardStack.CardEventList
             LieuFragment fragment = new LieuFragment();
             fragment.setArguments(b);
             fragmentTransaction.replace(R.id.contain_fragment, fragment);
-            //fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
 
         }
@@ -240,13 +255,16 @@ public class annoncefragment extends Fragment implements CardStack.CardEventList
         this.ad = ad;
     }
 
+    /**
+     *
+     */
     private void recherchecarte() {
 
         Query query = myRef.orderByChild("title").equalTo("nettoyage salon");
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-
+                Datalistannonce.clear();
                 long value = dataSnapshot.getChildrenCount();
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
 
@@ -254,7 +272,7 @@ public class annoncefragment extends Fragment implements CardStack.CardEventList
                     LatLng latlngadvert;  //OBjet qui stovke la latitude et la longitude de l'addresse de l'annonce
                     latlngadvert = getLocationFromAddress(getContext(), child.getValue(Advert.class).getaddresse()); //on calcule la latitude et longitude
                     if (latlngadvert == null || latLng==null) { //si différent de null on continue
-                        Toast.makeText(getContext(), "Vérifier le signal GPS", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(), "Revenez plus tard...", Toast.LENGTH_LONG).show();
 
                     } else {
                         Location.distanceBetween(latLng.latitude, latLng.longitude,
@@ -267,10 +285,11 @@ public class annoncefragment extends Fragment implements CardStack.CardEventList
                         //Toast.makeText(getActivity().getApplicationContext(), "TaskTitle = " + child.getValue(Advert.class).getaddresse(), Toast.LENGTH_LONG).show();
                     }
 
-                    Log.i("taille", Integer.toString(Datalistannonce.size()));
-                    swipe_card_adapter = new SwipeCardAdapter(getActivity().getApplicationContext(), 0, Datalistannonce);//AFFICHAGE
-                    cardstack.setAdapter(swipe_card_adapter);
+
                 }
+                Log.i("taille", Integer.toString(Datalistannonce.size()));
+                swipe_card_adapter = new SwipeCardAdapter(getContext(), 0, Datalistannonce);//AFFICHAGE
+                cardstack.setAdapter(swipe_card_adapter);
             }
 
             @Override
@@ -282,6 +301,9 @@ public class annoncefragment extends Fragment implements CardStack.CardEventList
 
     }
 
+    /**
+     *
+     */
     protected void startLocationUpdates() {
 
         // Create the location request to start receiving updates
@@ -316,19 +338,22 @@ public class annoncefragment extends Fragment implements CardStack.CardEventList
                     recherchecarte();
                 }
                 else {
-                    Toast.makeText(getContext(), "Pas de signal,quittez et activez le GPS", Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getContext(), "Pas de signal,quittez et activez le GPS", Toast.LENGTH_LONG).show();
                 }
             }
         };
         LocationServices.getFusedLocationProviderClient(getContext()).requestLocationUpdates(mLocationRequest, mLocationCallback,Looper.myLooper());
     }
 
+    /**
+     * @param location
+     */
     public void onLocationChanged(Location location) {
         // New location has now been determined
         String msg = "Updated Location: " +
                 Double.toString(location.getLatitude()) + "," +
                 Double.toString(location.getLongitude());
-        Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getActivity().getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
         // You can now create a LatLng Object for use with maps
         latLng = new LatLng(location.getLatitude(), location.getLongitude());
 
@@ -341,6 +366,11 @@ public class annoncefragment extends Fragment implements CardStack.CardEventList
         mFusedLocationClient.removeLocationUpdates(mLocationCallback);
     }
 
+    /**
+     * @param context
+     * @param strAddress
+     * @return
+     */
     public LatLng getLocationFromAddress(Context context, String strAddress) {
         Geocoder coder = new Geocoder(context);
         List<Address> address;

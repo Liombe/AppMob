@@ -1,8 +1,10 @@
 package com.dubalais.android;
 
 
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Looper;
@@ -16,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.dubalais.android.task.ItineraireTask;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -29,6 +32,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 
@@ -47,6 +51,7 @@ public class LieuFragment extends Fragment implements OnMapReadyCallback {
     private long FASTEST_INTERVAL = 175000; /*3 min et quelque */
     private FusedLocationProviderClient mFusedLocationClient;
     private LatLng latLng;
+    private LocationCallback mLocationCallback;
 
     public LieuFragment() {
         // Required empty public constructor
@@ -59,8 +64,9 @@ public class LieuFragment extends Fragment implements OnMapReadyCallback {
         if (bundle != null) {
             arrivee = bundle.getString("arrivee", " ");
         }
-        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(getContext());
 
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(getContext());
+        LocationCallback mLocationCallback ;
     }
 
     @Override
@@ -70,7 +76,6 @@ public class LieuFragment extends Fragment implements OnMapReadyCallback {
         View view = inflater.inflate(R.layout.fragment_lieu, container, false);
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.main_branch_map);
         mapFragment.getMapAsync(this);
-        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(getContext());
         startLocationUpdates();
         return view;
     }
@@ -116,16 +121,9 @@ public class LieuFragment extends Fragment implements OnMapReadyCallback {
 
         // new Google API SDK v11 uses getFusedLocationProviderClient(this)
         if (ActivityCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
             return;
         }
-        LocationServices.getFusedLocationProviderClient(getContext()).requestLocationUpdates(mLocationRequest, new LocationCallback() {
+        LocationServices.getFusedLocationProviderClient(getContext()).requestLocationUpdates(mLocationRequest, mLocationCallback=new LocationCallback() {
                     @Override
                     public void onLocationResult(LocationResult locationResult) {
                         // do work here
@@ -141,7 +139,7 @@ public class LieuFragment extends Fragment implements OnMapReadyCallback {
         String msg = "Updated Location: " +
                 Double.toString(location.getLatitude()) + "," +
                 Double.toString(location.getLongitude());
-        Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
         // You can now create a LatLng Object for use with maps
         latLng = new LatLng(location.getLatitude(), location.getLongitude());
         Double l1=latLng.latitude;
@@ -149,42 +147,21 @@ public class LieuFragment extends Fragment implements OnMapReadyCallback {
         String coordl1 = l1.toString();
         String coordl2 = l2.toString();
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 12.0f));
-        new ItineraireTask(getContext(), mMap, coordl1+","+coordl2, "mairie de clichy 92110").execute();
+        new ItineraireTask(getContext(), mMap, coordl1+","+coordl2, arrivee).execute();
 
     }
 
-    public void getLastLocation() {
-        // Get last known recent location using new Google Play Services SDK (v11+)
-        FusedLocationProviderClient locationClient = LocationServices.getFusedLocationProviderClient(getContext());
+    @Override
+    public void onPause()
+    {
+        // TODO Auto-generated method stub
+        super.onPause();
+        mFusedLocationClient.removeLocationUpdates(mLocationCallback);
+    }
 
-        if (ActivityCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
-        }
-        locationClient.getLastLocation()
-                .addOnSuccessListener(new OnSuccessListener<Location>() {
-                    @Override
-                    public void onSuccess(Location location) {
-                        // GPS location can be null if GPS is switched off
-                        if (location != null) {
-                            onLocationChanged(location);
-                        }
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.d("MapDemoActivity", "Error trying to get last GPS location");
-                        e.printStackTrace();
-                    }
-
-
-                });
+    @Override
+    public void onResume() {
+        super.onResume();
+        startLocationUpdates();
     }
 }
