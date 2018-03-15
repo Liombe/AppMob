@@ -27,7 +27,7 @@ import android.widget.Toast;
 
 /**
  * com.dubalais.android.task.ItineraireTask
- * @author Ludovic
+ * @author Nikola
  */
 public class ItineraireTask extends AsyncTask<Void, Integer, Boolean> {
     /*******************************************************/
