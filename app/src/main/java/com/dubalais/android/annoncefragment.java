@@ -20,6 +20,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.dubalais.android.adapter.SwipeCardAdapter;
@@ -86,6 +87,7 @@ public class annoncefragment extends Fragment implements CardStack.CardEventList
     private LatLng latLng;
     private LocationCallback mLocationCallback;
     private float distMAX = 10000;
+    private ProgressBar progressbar;
 
 
     public annoncefragment() {
@@ -129,11 +131,14 @@ public class annoncefragment extends Fragment implements CardStack.CardEventList
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_annoncefragment, container, false);
         card_list = new ArrayList<>();
+        progressbar=(ProgressBar)v.findViewById(R.id.progressBarannonce);
         cardstack = (CardStack) v.findViewById(R.id.container);
         cardstack.setContentResource(R.layout.layout_card);
         //cardstack.setStackMargin(18);
         cardstack.setListener(this);
         startLocationUpdates();
+        progressbar.setVisibility(View.VISIBLE);
+
         return v;
     }
 
@@ -259,6 +264,7 @@ public class annoncefragment extends Fragment implements CardStack.CardEventList
      *
      */
     private void recherchecarte() {
+        progressbar.setVisibility(View.GONE);
 
         Query query = myRef.orderByChild("title").equalTo("nettoyage salon");
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -271,10 +277,10 @@ public class annoncefragment extends Fragment implements CardStack.CardEventList
                     float[] results = new float[1];  //creer tableau où on stocke la distance
                     LatLng latlngadvert;  //OBjet qui stovke la latitude et la longitude de l'addresse de l'annonce
                     latlngadvert = getLocationFromAddress(getContext(), child.getValue(Advert.class).getaddresse()); //on calcule la latitude et longitude
-                    if (latlngadvert == null || latLng==null) { //si différent de null on continue
-                        Toast.makeText(getContext(), "Revenez plus tard...", Toast.LENGTH_LONG).show();
+                    while(latlngadvert == null || latLng==null) { //si différent de null on continue
+                        //Toast.makeText(getContext(), "Revenez plus tard...", Toast.LENGTH_LONG).show();
 
-                    } else {
+                    }
                         Location.distanceBetween(latLng.latitude, latLng.longitude,
                                 latlngadvert.latitude, latlngadvert.longitude, results); //calcul de la distance entre la position de la personnes et le domicille du gars
 
@@ -283,13 +289,15 @@ public class annoncefragment extends Fragment implements CardStack.CardEventList
                             Datalistannonce.add(child.getValue(Advert.class));
                         }
                         //Toast.makeText(getActivity().getApplicationContext(), "TaskTitle = " + child.getValue(Advert.class).getaddresse(), Toast.LENGTH_LONG).show();
-                    }
+
 
 
                 }
                 Log.i("taille", Integer.toString(Datalistannonce.size()));
                 swipe_card_adapter = new SwipeCardAdapter(getContext(), 0, Datalistannonce);//AFFICHAGE
+
                 cardstack.setAdapter(swipe_card_adapter);
+
             }
 
             @Override
