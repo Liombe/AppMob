@@ -137,6 +137,8 @@ public class annoncefragment extends Fragment implements CardStack.CardEventList
         //cardstack.setStackMargin(18);
         cardstack.setListener(this);
         startLocationUpdates();
+        progressbar.setVisibility(View.VISIBLE);
+
         return v;
     }
 
@@ -262,7 +264,7 @@ public class annoncefragment extends Fragment implements CardStack.CardEventList
      *
      */
     private void recherchecarte() {
-        progressbar.setVisibility(View.VISIBLE);
+        progressbar.setVisibility(View.GONE);
 
         Query query = myRef.orderByChild("title").equalTo("nettoyage salon");
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -293,9 +295,9 @@ public class annoncefragment extends Fragment implements CardStack.CardEventList
                 }
                 Log.i("taille", Integer.toString(Datalistannonce.size()));
                 swipe_card_adapter = new SwipeCardAdapter(getContext(), 0, Datalistannonce);//AFFICHAGE
-                progressbar.setVisibility(View.GONE);
 
                 cardstack.setAdapter(swipe_card_adapter);
+
             }
 
             @Override
