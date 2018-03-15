@@ -138,6 +138,7 @@ public class SignupActivity extends AppCompatActivity implements OnClickListener
                     check.setText(title);
                     check.setTextColor(ContextCompat.getColor(SignupActivity.this, R.color.grisClair));
                     check.setLeft(100);
+                    check.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL);
                     checkBoxes.add(check);
 
                     final EditText price = new EditText(SignupActivity.this);
@@ -373,14 +374,14 @@ public class SignupActivity extends AppCompatActivity implements OnClickListener
             return false;
         }
 
-        fournisseur.put("name", inputName.getText().toString().trim());
-        fournisseur.put("firstname", inputFirstname.getText().toString().trim());
+        demandeur.put("name", inputName.getText().toString().trim());
+        demandeur.put("firstname", inputFirstname.getText().toString().trim());
         Address address = new Address(
                 inputVoie.getText().toString().trim(),
                 Long.parseLong(inputZip.getText().toString().trim()),
                 inputCity.getText().toString().trim());
-        fournisseur.put("address", address);
-        fournisseur.put("phone", inputPhone.getText().toString().trim());
+        demandeur.put("address", address);
+        demandeur.put("phone", inputPhone.getText().toString().trim());
 
         return true;
     }

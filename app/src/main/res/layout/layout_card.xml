@@ -8,57 +8,90 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
         android:fontFamily="@font/petitformalscript"
         android:id="@+id/texttitre"
         android:layout_centerHorizontal="true"
         android:textSize="24sp"
-        android:text="titre:" />
+        android:text="titre:"
+        android:textAlignment="center" />
+
+    <View
+        android:id="@+id/line1"
+        android:layout_width="100dp"
+        android:layout_height="1dip"
+        android:layout_marginTop="25dp"
+        android:layout_below="@+id/texttitre"
+        android:layout_centerHorizontal="true"
+        android:background="@color/bg_register" />
+
+    <TextView
+        android:id="@+id/textdesctitre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/texttitre"
+        android:layout_marginTop="50dp"
+        android:text="Services"
+        android:textAlignment="center"
+        android:textColor="@color/bg_register"
+        android:textSize="18sp"
+        android:fontFamily="@font/petitformalscript"/>
 
 
     <TextView
         android:id="@+id/textdesc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/textville"
-        android:layout_alignRight="@+id/textville"
-        android:layout_below="@+id/texttitre"
-        android:layout_marginTop="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/textdesctitre"
+        android:layout_marginTop="10dp"
         android:fontFamily="@font/robotolight"
         android:text="desc"
+        android:textAlignment="center"
         android:textColor="@color/bg_register"
-        android:textSize="18sp" />
+        android:textSize="16sp" />
 
-    <TextView
-        android:id="@+id/textanonceur"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textdesc"
-        android:fontFamily="@font/robotolight"
-        android:textColor="@color/bg_register"
-        android:textSize="18sp"
+    <View
+        android:id="@+id/line2"
+        android:layout_width="100dp"
+        android:layout_height="1dip"
+        android:layout_marginTop="25dp"
+        android:layout_above="@+id/textprix"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="96dp"
-        android:text="Annonceur:" />
+        android:background="@color/bg_register" />
 
     <TextView
         android:id="@+id/textprix"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/textanonceur"
+        android:layout_below="@id/textdesc"
+        android:textColor="@color/bg_register"
+        android:textSize="18sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="200dp"
+        android:text="Prix:"
+        android:fontFamily="@font/petitformalscript"/>
+
+
+
+    <TextView
+        android:id="@+id/textanonceur"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textprix"
         android:fontFamily="@font/robotolight"
         android:textColor="@color/bg_register"
         android:textSize="18sp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="75dp"
-        android:text="Prix:" />
+        android:layout_marginTop="30dp"
+        android:text="Annonceur:" />
 
     <TextView
         android:id="@+id/textville"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
-        android:layout_alignLeft="@+id/textprix"
-        android:layout_alignStart="@+id/textprix"
+        android:layout_centerHorizontal="true"
         android:layout_below="@+id/textanonceur"
         android:layout_marginTop="21dp"
         android:fontFamily="@font/robotolight"

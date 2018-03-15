@@ -24,7 +24,7 @@ public class User {
     public int rayon;
     public List<Double> prices;
     public List<Chore> chores;
-    private String phone;
+    public String phone;
 
 
     public User(){
@@ -111,6 +111,7 @@ public class User {
         if(type.equals("fournisseur")){
             result.put("chores", chores);
             result.put("prices", prices);
+            result.put("rayon", rayon);
         }
 
 
@@ -126,6 +127,7 @@ public class User {
         if(this.type.equals("fournisseur")){
            this.chores  = (ArrayList<Chore>) input.get("chores");
            this.prices  = (ArrayList<Double>) input.get("prices");
+           this.rayon = Integer.parseInt((String)input.get("rayon"));
         }
     }
 }

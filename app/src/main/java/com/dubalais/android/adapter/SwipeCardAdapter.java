@@ -1,6 +1,7 @@
 package com.dubalais.android.adapter;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -28,7 +29,9 @@ public class SwipeCardAdapter extends ArrayAdapter<Advert> {
     public View getView(int position, final View contentView, ViewGroup parent){
 
         TextView t_titre=(TextView)(contentView.findViewById(R.id.texttitre));
-        t_titre.setText(card_list.get(position).getTitle());
+        String titre = card_list.get(position).getTitle();
+        titre = titre.substring(0,1).toUpperCase() + titre.substring(1);
+        t_titre.setText(titre);
 
         TextView t_prix = (TextView)(contentView.findViewById(R.id.textprix));
         t_prix.setText(card_list.get(position).getstringprice()+"€");

@@ -21,7 +21,7 @@ import java.util.List;
  */
 
 public class AdvertAdapter extends ArrayAdapter<Advert> {
-    //tweets est la liste des models à afficher
+    //ads est la liste des models à afficher
 
     public AdvertAdapter(Context context, List<Advert> ads) {
         super(context, 0, ads);
