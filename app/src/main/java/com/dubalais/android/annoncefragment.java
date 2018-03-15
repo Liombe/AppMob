@@ -38,6 +38,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -134,7 +135,6 @@ public class annoncefragment extends Fragment implements CardStack.CardEventList
         progressbar=(ProgressBar)v.findViewById(R.id.progressBarannonce);
         cardstack = (CardStack) v.findViewById(R.id.container);
         cardstack.setContentResource(R.layout.layout_card);
-        //cardstack.setStackMargin(18);
         cardstack.setListener(this);
         startLocationUpdates();
         progressbar.setVisibility(View.VISIBLE);
@@ -174,7 +174,7 @@ public class annoncefragment extends Fragment implements CardStack.CardEventList
 
     @Override
     public boolean swipeEnd(int section, float distance) {
-        return (distance > 600) ? true : false;
+        return (distance > 300) ? true : false;
     }
 
     @Override
@@ -213,7 +213,7 @@ public class annoncefragment extends Fragment implements CardStack.CardEventList
 
         } else if (direction == 0) {
 
-            Toast.makeText(getActivity().getApplicationContext(), " Swipped to Left", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getActivity().getApplicationContext(), " Swipped to Left", Toast.LENGTH_SHORT).show();
 
 
         } else {
@@ -232,12 +232,16 @@ public class annoncefragment extends Fragment implements CardStack.CardEventList
 
         }
         swipecount++;
+
+        if(swipecount >= swipe_card_adapter.getCount()){
+            cardstack.reset(true);
+            swipecount =0;
+        }
     }
 
     @Override
     public void topCardTapped() {
-        Toast.makeText(getActivity().getApplicationContext(), "TaskTitle = " + Datalistannonce.get(0).getville(), Toast.LENGTH_LONG).show();
-        Toast.makeText(getActivity().getApplicationContext(), "Clicked top card", Toast.LENGTH_SHORT).show();
+
 
     }
 
@@ -264,7 +268,7 @@ public class annoncefragment extends Fragment implements CardStack.CardEventList
      *
      */
     private void recherchecarte() {
-        progressbar.setVisibility(View.GONE);
+
 
         Query query = myRef.orderByChild("title").equalTo("nettoyage salon");
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -274,22 +278,25 @@ public class annoncefragment extends Fragment implements CardStack.CardEventList
                 long value = dataSnapshot.getChildrenCount();
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
 
-                    float[] results = new float[1];  //creer tableau où on stocke la distance
-                    LatLng latlngadvert;  //OBjet qui stovke la latitude et la longitude de l'addresse de l'annonce
-                    latlngadvert = getLocationFromAddress(getContext(), child.getValue(Advert.class).getaddresse()); //on calcule la latitude et longitude
-                    while(latlngadvert == null || latLng==null) { //si différent de null on continue
-                        //Toast.makeText(getContext(), "Revenez plus tard...", Toast.LENGTH_LONG).show();
+                    Advert ad = child.getValue(Advert.class);
 
-                    }
+                    if(!ad.getUid().equals(FirebaseAuth.getInstance().getUid())) {
+
+                        float[] results = new float[1];  //creer tableau où on stocke la distance
+                        LatLng latlngadvert;  //OBjet qui stovke la latitude et la longitude de l'addresse de l'annonce
+                        latlngadvert = getLocationFromAddress(getContext(), child.getValue(Advert.class).getaddresse()); //on calcule la latitude et longitude
+                        while (latlngadvert == null || latLng == null) { //si différent de null on continue
+                            Toast.makeText(getContext(), "Aucune annonce disponible", Toast.LENGTH_LONG).show();
+
+                        }
                         Location.distanceBetween(latLng.latitude, latLng.longitude,
                                 latlngadvert.latitude, latlngadvert.longitude, results); //calcul de la distance entre la position de la personnes et le domicille du gars
 
                         Log.i("distance", Float.toString(results[0]));
                         if (results[0] < distMAX) { //SI LA DISTANCE EST INFERIEUR A DISTMAX ON STOCKE DANS ARRAYLIST ET ON AFFICHE
-                            Datalistannonce.add(child.getValue(Advert.class));
+                            Datalistannonce.add(ad);
                         }
-                        //Toast.makeText(getActivity().getApplicationContext(), "TaskTitle = " + child.getValue(Advert.class).getaddresse(), Toast.LENGTH_LONG).show();
-
+                    }
 
 
                 }
@@ -297,6 +304,7 @@ public class annoncefragment extends Fragment implements CardStack.CardEventList
                 swipe_card_adapter = new SwipeCardAdapter(getContext(), 0, Datalistannonce);//AFFICHAGE
 
                 cardstack.setAdapter(swipe_card_adapter);
+                progressbar.setVisibility(View.GONE);
 
             }
 

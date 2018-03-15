@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.dubalais.android.adapter.AdvertAdapter;
 import com.dubalais.android.models.Advert;
@@ -71,6 +72,7 @@ public class ViewAdFragment extends Fragment {
         return fragment;
     }
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,6 +89,7 @@ public class ViewAdFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         final View view = inflater.inflate(R.layout.fragment_viewad, container, false);
+
         final ListView lv = (ListView) view.findViewById(R.id.listView);
 
         final List<Advert> ads = new ArrayList<Advert>();
@@ -95,6 +98,7 @@ public class ViewAdFragment extends Fragment {
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                //Récupération des annonces créées par l'utilisateur
                 for(DataSnapshot child : dataSnapshot.getChildren()){
                     String id = child.getKey();
                     Advert ad = child.getValue(Advert.class);
@@ -102,8 +106,9 @@ public class ViewAdFragment extends Fragment {
                     ads.add(ad);
                 }
 
-                AdvertAdapter adapter = new AdvertAdapter(view.getContext(), ads);
+                final AdvertAdapter adapter = new AdvertAdapter(view.getContext(), ads);
                 lv.setAdapter(adapter);
+
                 lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -115,6 +120,17 @@ public class ViewAdFragment extends Fragment {
                         fragmentTransaction.replace(R.id.contain_fragment, fragment);
                         fragmentTransaction.addToBackStack(null);
                         fragmentTransaction.commit();
+                    }
+                });
+
+                lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+                    @Override
+                    public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        Toast.makeText(getContext(), "LongCLik", Toast.LENGTH_SHORT);
+                        myRef.child("user-adverts").child(FirebaseAuth.getInstance().getUid()).child(ads.get(i).getUid()).setValue(null);
+                        myRef.child("adverts").child(ads.get(i).getUid());
+                        adapter.notifyDataSetChanged();
+                        return true;
                     }
                 });
             }

@@ -7,6 +7,15 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
+import com.dubalais.android.models.User;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 
 /**
@@ -22,6 +31,9 @@ public class AccueilFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    FirebaseDatabase database;
+    DatabaseReference myRef;
+    User user;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -58,13 +70,33 @@ public class AccueilFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        database = FirebaseDatabase.getInstance();
+        myRef = database.getReference("users");
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_accueilfragment, container, false);
+        final View view = inflater.inflate(R.layout.fragment_accueilfragment, container, false);
+
+        final TextView t = view.findViewById(R.id.accueil);
+
+        myRef.child(FirebaseAuth.getInstance().getUid()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                user = dataSnapshot.getValue(User.class);
+                t.setText("Bienvenue " + user.firstname+" "+user.name.substring(0,1).toUpperCase()+".");
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        return view;
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event
